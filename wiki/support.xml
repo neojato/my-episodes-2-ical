@@ -1,0 +1,26 @@
+﻿<Module>
+<ModulePrefs title="my-episodes-2-ical" description="my-episodes-2-ical" width="140" height="60" scrolling="false" author="my-episodes-2-ical" author_email="kpaul86+gadget@gmail.com" thumbnail="http://code.google.com/apis/checkout/gadget/supportimage.gif">
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+<form method="POST"
+      target="_blank"
+      action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/254288697644395"
+      accept-charset="utf-8">
+  <input type="hidden" name="item_name_1" value="MyEpisodes 2 Google Calendar Gadget"/>
+  <input type="hidden" name="item_description_1" value="Thanks for your support!"/>
+  <input type="hidden" name="shopping-cart.items.item-1.digital-content.display-disposition" value="OPTIMISTIC"/>
+  <input type="hidden" name="item_price_1" value="1.00"/>
+  <input type="hidden" name="item_currency_1" value="USD"/>
+  <input type="hidden" name="item_quantity_1" value="1"/>
+  <input type="hidden" name="_charset_" />
+  <input type="image"
+    name="Google Checkout"
+    alt="Support"
+    src="https://checkout.google.com/buttons/support.gif?merchant_id=254288697644395&w=130&h=50&style=white&variant=text&loc=en_US"
+    height="50"
+    width="130" />
+</form>
+]]>
+</Content>
+</Module>
