@@ -1,0 +1,6 @@
+=*Gadget Interface*=
+
+<table border="0">
+<tr><td>[https://my-episodes-2-ical.googlecode.com/files/screenshot1.1.png]</td><td>[https://my-episodes-2-ical.googlecode.com/files/screenshot2.1.png]</td><td>[https://my-episodes-2-ical.googlecode.com/files/screenshot3.1.png]</td><td>[https://my-episodes-2-ical.googlecode.com/files/screenshot4.1.png]</td></tr>
+<tr><td>Default view</td><td>Hover for episode information</td>
+<td>Add episode reminder<br/>to Google Calendar</td><td>Switch MyEpisodes feed type</td></tr></table>
