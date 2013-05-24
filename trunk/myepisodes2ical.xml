@@ -15,9 +15,9 @@
   <UserPref name="feed" display_name="Feed" default_value="mylist"/>
   <Content type="html">
     <![CDATA[
-    <head><link rel="stylesheet" type="text/css" href="https://my-episodes-2-ical.googlecode.com/files/cal_gadget.css" /></head>
+    <head><link rel="stylesheet" type="text/css" href="https://my-episodes-2-ical.googlecode.com/svn/trunk/cal_gadget.css"/></head>
     <div id="content_div"></div>
-    <script type="text/javascript" src="https://my-episodes-2-ical.googlecode.com/files/cal_gadget.js"></script>
+    <script type="text/javascript" src="https://my-episodes-2-ical.googlecode.com/svn/trunk/cal_gadget.js"></script>
     ]]>
   </Content>
 </Module>
