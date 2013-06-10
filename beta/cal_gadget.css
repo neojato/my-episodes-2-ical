@@ -1,0 +1,16 @@
+#content_div { font: small/normal Arial,sans-serif; font-size: 70%; margin: 5px; background-color: #FFFFFF; }
+.fl__MODULE_ID__ {font-size: smaller; padding-top: 2px; padding-bottom: 2px;}
+a:link, a:visited { color: #105CB6; text-decoration: none; }
+a:hover, a:active { color: #000; }
+.it { background: #FFFFFF ; cursor: default; padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block; }
+.ith { background: #F0F0F0 ; cursor: default; padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block; }
+.op { margin-left: 3px; border: 1px solid #FFF; background-color: #FFF; vertical-align: middle; height: 15px; padding: 2px 3px 2px 2px; border-image: initial; }
+.oph { margin-left: 3px; border: 1px solid #CCC; background-color: #F0F0F0; vertical-align: middle; height: 15px; padding: 2px 3px 2px 2px; border-image: initial; }
+.mn { background-image: url('https://ssl.gstatic.com/tasks/embed-tasks-sprites9.png'); background-position: -142px -4px; height: 12px; width: 15px; vertical-align: middle; position: relative; display: inline-block; }
+.ar { background-image: url('https://ssl.gstatic.com/tasks/embed-tasks-sprites9.png'); background-position: -296px -2px; height: 5px; width: 6px; vertical-align: middle; position: relative; display: inline-block; }
+.arh { background-image: url('https://ssl.gstatic.com/tasks/embed-tasks-sprites9.png'); background-position: -289px -1px; height: 6px; width: 5px; vertical-align: middle; position: relative; display: inline-block; }
+.w { background-image: url('https://calendar.google.com/googlecalendar/images/combined_v32_vr.png'); background-position: -2px -52px; height: 12px; width: 12px; margin: 6px 2px 2px 6px; display: block; }
+#cg_menu ul { font-family: Arial, sans-serif; color: #000; margin: 20px; font-size: 12px; list-style: none; width: 100px; }
+#cg_menu ul a { color: #000; text-decoration: none; display: block; padding: 5px 5px 5px 10px; width: 100px; background: #F3F3F7; }
+#cg_menu ul a:hover { color: #FFF; text-decoration: none; background: #4279A5; }
+#cg_menu ul li { border-left: 1px solid #B5B6B5; border-right: 1px solid #B5B6B5; float: left; position: relative; }
