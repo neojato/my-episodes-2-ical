@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<Module>
+  <ModulePrefs title="__UP_title__" 
+		author="Kyle Paul" 
+		author_email="kpaul86+GADGET@gmail.com"
+		thumbnail="http://www.myepisodes.com/img/myepisodes_logo.jpg"
+		version="0.8"
+		description="Powered by http://www.MyEpisodes.com. This gadget displays the showtimes for all of your favorite TV shows right in your Google Calendar! The gadget is designed to run only in Google Calendars, not in other Google services that allow gadgets (ex. GMail or iGoogle).">
+    <Require feature="setprefs"/>
+    <Require feature="dynamic-height"/>
+	<Require feature="google.calendar-0.5"/>
+  </ModulePrefs>
+  <UserPref name="uid" display_name="Username" default_value=""/>
+  <UserPref name="pwdmd5" display_name="MD5 Access Key" default_value=""/>
+  <UserPref name="title" display_name="Title" default_value="MyEpisodes - Beta"/>
+  <UserPref name="feed" display_name="Feed" default_value="mylist"/>
+  <Content type="html">
+    <![CDATA[
+	<head><link rel="stylesheet" type="text/css" href="https://my-episodes-2-ical.googlecode.com/files/calGadget.css" /></head>
+    <div id="content_div"></div>
+    <script type="text/javascript" src="https://my-episodes-2-ical.googlecode.com/files/cal_gadget_beta.js"></script>
+    ]]>
+  </Content>
+</Module>
