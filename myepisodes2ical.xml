@@ -4,10 +4,12 @@
       author="Kyle Paul" 
       author_email="kpaul86+GADGET@gmail.com"
       thumbnail="http://www.myepisodes.com/img/myepisodes_logo.jpg"
-      description="Powered by http://www.MyEpisodes.com. This gadget displays the showtimes for all of your favorite TV shows right in your Google Calendar! The gadget is designed to run only in Google Calendars, not in other Google services that allow gadgets (ex. GMail or iGoogle).">
+      description="Powered by http://www.MyEpisodes.com. This gadget displays the showtimes for all of your favorite TV shows right in your Google Calendar! The gadget is designed to run only in Google Calendars, not in other Google services that allow gadgets (ex. GMail or iGoogle)."
+      screenshot="https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot1.1.png">
     <Require feature="setprefs"/>
     <Require feature="dynamic-height"/>
     <Require feature="google.calendar-0.5"/>
+    <Require feature="com.google.gadgets.analytics"/>
   </ModulePrefs>
   <UserPref name="uid" display_name="Username" default_value=""/>
   <UserPref name="pwdmd5" display_name="MD5 Access Key" default_value=""/>
@@ -18,6 +20,10 @@
     <head><link rel="stylesheet" type="text/css" href="https://my-episodes-2-ical.googlecode.com/svn/trunk/cal_gadget.css"/></head>
     <div id="content_div"></div>
     <script type="text/javascript" src="https://my-episodes-2-ical.googlecode.com/svn/trunk/cal_gadget.js"></script>
+    <script type="text/javascript">
+        var ga = new _IG_GA('UA-7344999-13');
+        ga.reportPageview('/view/my-episodes-2-ical');
+    </script>
     ]]>
   </Content>
 </Module>
