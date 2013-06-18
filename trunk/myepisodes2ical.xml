@@ -21,7 +21,7 @@
     <div id="content_div"></div>
     <script type="text/javascript" src="https://my-episodes-2-ical.googlecode.com/svn/trunk/cal_gadget.js"></script>
     <script type="text/javascript">
-        var ga = new _IG_GA('UA-7344999-13');
+        var ga = new _IG_GA('UA-7344999-15');
         ga.reportPageview('/view/my-episodes-2-ical');
     </script>
     ]]>
