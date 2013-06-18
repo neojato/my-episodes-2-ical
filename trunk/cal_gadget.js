@@ -18,6 +18,7 @@ function getFeed() {
         params[gadgets.io.RequestParameters.GET_SUMMARIES] = true;
         params[gadgets.io.RequestParameters.NUM_ENTRIES] = 200;
         document.getElementById('content_div').innerHTML = "<div id='content_feed'>Retrieving Feed...</div>";
+        ga.reportPageview('/view/my-episodes-2-ical/'+prefs.getString('feed'));
         gadgets.io.makeRequest(url, response, params);
     }
     else {
@@ -308,6 +309,7 @@ function updateFeed() {
             }
             else if(name == "feed") {
                 prefs.set('feed', elements[i].value);
+                ga.reportEvent("my-episodes-2-ical Gadget", "Switch Feed", elements[i].value);
             }
         }
         else {
