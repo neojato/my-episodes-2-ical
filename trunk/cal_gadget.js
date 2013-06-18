@@ -1,4 +1,5 @@
 // get userprefs
+var ga = new _IG_GA('UA-7344999-15');
 var prefs = new gadgets.Prefs();
 var version = '0.8.4';
 
