@@ -250,10 +250,15 @@ function getMenu() {
     html += "<li onclick='javascript:submitOption(&#39;tomorrow&#39;);'><a href='' onclick='return false;'><span id='cg_tomorrow'>&nbsp;&nbsp;&nbsp;&nbsp;</span>Tomorrow</a></li>";
     html += "<li onclick='javascript:submitOption(&#39;unwatched&#39;);'><a href='' onclick='return false;'><span id='cg_unwatched'>&nbsp;&nbsp;&nbsp;&nbsp;</span>Unwatched</a></li>";
     html += "<li style='border-bottom: 1px solid #B5B6B5;' onclick='javascript:submitOption(&#39;unacquired&#39;);'><a href='' onclick='return false;'><span id='cg_unacquired'>&nbsp;&nbsp;&nbsp;&nbsp;</span>Unacquired</a></li>";
-    html += "<li onclick='javascript:window.open( &#39;http://www.myepisodes.com/rss.php?feed=" + prefs.getString('feed') + "&uid=" + prefs.getString('uid') + "&pwdmd5=" + prefs.getString('pwdmd5') + "&#39;, &#39;_blank&#39; );'><a href='' title='View &#39;" + prefs.getString('feed') + "&#39; XML Feed' onclick='return false;'><span id='cg_viewfeed'>&nbsp;&nbsp;&nbsp;&nbsp;</span>View Feed XML</a></li>";
+    html += "<li onclick='javascript:viewFeedXML();'><a href='' title='View &#39;" + prefs.getString('feed') + "&#39; XML Feed' onclick='return false;'><span id='cg_viewfeed'>&nbsp;&nbsp;&nbsp;&nbsp;</span>View Feed XML</a></li>";
     html += "<li style='border-bottom: 1px solid #B5B6B5;' onclick='javascript:prefs.set( &#39;pwdmd5&#39;, &#39;&#39; );getFeed();'><a href='' onclick='return false;'><span id='cg_logout'>&nbsp;&nbsp;&nbsp;&nbsp;</span>Log Out</a></li>";
     html += "</ul></div></div>";
     return html;
+};
+
+function viewFeedXML() {
+   ga.reportEvent("my-episodes-2-ical Gadget", "View Feed XML", prefs.getString('feed'));
+   window.open('http://www.myepisodes.com/rss.php?feed='+prefs.getString('feed')+'&uid='+prefs.getString('uid')+'&pwdmd5='+prefs.getString('pwdmd5'), '_blank');
 };
 
 function showOption() {
@@ -347,7 +352,8 @@ function addEvent(showName, showTitle, showTime) {
         startTime : { year: startYear, month: startMonth, date: startDay, hour: startHour, minute: startMinute, second: 0 },
         endTime : { year: endYear, month: endMonth, date: endDay, hour: endHour, minute: endMinute, second: 0 }
     };
-
+    
+    ga.reportEvent("my-episodes-2-ical Gadget", "Add to calendar", showName +' '+showTitle);
     google.calendar.composeEvent(eventData);
 };
 
@@ -401,6 +407,11 @@ function formatTime(showTime) {
     else {
         return hour + ":" + minutes + " " + period;
     }
+};
+
+function viewFeedXML() {
+   ga.reportEvent("my-episodes-2-ical Gadget", "View Feed XML", prefs.getString('feed'));
+   window.open('http://www.myepisodes.com/rss.php?feed='+prefs.getString('feed')+'&uid='+prefs.getString('uid')+'&pwdmd5='+prefs.getString('pwdmd5'), '_blank');
 };
 
 function isValidMd5(pw) {
