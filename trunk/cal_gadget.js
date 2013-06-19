@@ -409,11 +409,6 @@ function formatTime(showTime) {
     }
 };
 
-function viewFeedXML() {
-   ga.reportEvent("my-episodes-2-ical Gadget", "View Feed XML", prefs.getString('feed'));
-   window.open('http://www.myepisodes.com/rss.php?feed='+prefs.getString('feed')+'&uid='+prefs.getString('uid')+'&pwdmd5='+prefs.getString('pwdmd5'), '_blank');
-};
-
 function isValidMd5(pw) {
     var md5 = null;
     if(pw) md5 = pw.match(/[a-f0-9]{8}[a-f0-9]{4}[a-f0-9]{4}[a-f0-9]{4}[a-f0-9]{12}/i);
