@@ -1,7 +1,7 @@
 // get userprefs
 var ga = new _IG_GA('UA-7344999-15');
 var prefs = new gadgets.Prefs();
-var msg = new gadgets.MiniMessage(__MODULE_ID__);
+var msg = new gadgets.MiniMessage();
 var version = '0.8.4b';
 
 msg.createDismissibleMessage("Please close me when you're done reading me.");
