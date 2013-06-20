@@ -4,7 +4,11 @@ var prefs = new gadgets.Prefs();
 var msg = new gadgets.MiniMessage();
 var version = '0.8.4b';
 
-msg.createStaticMessage('Please upgrade to the latest version of the MyEpisodes gadget here: <a href=&#39;https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml&#39;>Upgrade Now!</a>.');
+// create update gadget message
+var div = document.createElement("div");
+div.id = 'status';
+div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br><a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_blank">Upgrade Now!</a>';
+msg.createStaticMessage(div);
 
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
 if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
