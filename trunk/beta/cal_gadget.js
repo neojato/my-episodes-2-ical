@@ -7,7 +7,7 @@ var version = '0.8.4b';
 // create update gadget message
 var div = document.createElement("div");
 div.id = 'status';
-div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br>&nbsp;&nbsp;&nbsp;<a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_blank">Upgrade Now!</a>';
+div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br><div style="text-align: center;"><a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_blank">Upgrade Now!</a></div>';
 msg.createStaticMessage(div);
 
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
