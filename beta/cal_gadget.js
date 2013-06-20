@@ -1,7 +1,10 @@
 // get userprefs
 var ga = new _IG_GA('UA-7344999-15');
 var prefs = new gadgets.Prefs();
+var msg = new gadgets.MiniMessage(__MODULE_ID__);
 var version = '0.8.4b';
+
+msg.createDismissibleMessage("Please close me when you're done reading me.");
 
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
 if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
