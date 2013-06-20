@@ -7,7 +7,6 @@ var version = '0.8.4b';
 // create update gadget message
 var div = document.createElement("div");
 div.id = 'status';
-div.style.backgroundColor = '#B30000';
 div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br>&nbsp;&nbsp;&nbsp;<a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_blank">Upgrade Now!</a>';
 msg.createStaticMessage(div);
 
