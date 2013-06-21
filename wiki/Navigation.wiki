@@ -1,4 +1,4 @@
- * [Introduction Introduction]
+ * [Gadget Introduction]
  * [WhatsNew What's New?]
  * [HowTo How To]
  * Gadget Setup
