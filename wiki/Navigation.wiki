@@ -4,4 +4,3 @@
  * Gadget Setup
    * [GadgetSetup Calendar Gadget]
    * [ScriptSetup Personal Server Script]
- * [VersionHistory Version History]
