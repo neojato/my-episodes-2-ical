@@ -1,4 +1,4 @@
-=*Add the Google Calendar Gadget*= _(easy)_
+=*Adding the Google Calendar Gadget*=
   # Add the gadget to your calendar:
     [https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml https://my-episodes-2-ical.googlecode.com/svn/wiki/images/addToGC.gif]
   # Enter your MyEpisodes.com username, and md5-password`**`
