@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <Module>
   <ModulePrefs title="__UP_title__" 
-		author="Kyle Paul" 
-		author_email="kpaul86+GADGET@gmail.com"
-		thumbnail="http://www.myepisodes.com/img/myepisodes_logo.jpg"
-		version="0.8-beta"
-		description="Powered by http://www.MyEpisodes.com. This gadget displays the showtimes for all of your favorite TV shows right in your Google Calendar! The gadget is designed to run only in Google Calendars, not in other Google services that allow gadgets (ex. GMail or iGoogle)."
+    author="Kyle Paul" 
+    author_email="kpaul86+GADGET@gmail.com"
+    thumbnail="http://www.myepisodes.com/img/myepisodes_logo.jpg"
+    version="0.8-beta"
+    description="Powered by http://www.MyEpisodes.com. This gadget displays the showtimes for all of your favorite TV shows right in your Google Calendar! The gadget is designed to run only in Google Calendars, not in other Google services that allow gadgets (ex. GMail or iGoogle)."
     screenshot="https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot1.1.png">
     <Require feature="setprefs"/>
     <Require feature="dynamic-height"/>
-	  <Require feature="google.calendar-0.5"/>
+    <Require feature="google.calendar-0.5"/>
     <Require feature="com.google.gadgets.analytics"/>
     <Require feature="minimessage"/>
   </ModulePrefs>
