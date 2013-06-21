@@ -1,10 +1,10 @@
 =*Run script from your personal server*=
   # Checkout the code from [http://goo.gl/2vfs8 How to: Add MyEpisodes.com to Google Calendar].
-  # Enter your www.MyEpisodes.com username, and md5-password`**` in `myepisodes2ical.php` for the variables uid and md5.
+  # Enter your !MyEpisodes.com username, and md5-password`**` in `myepisodes2ical.php` for the variables uid and md5.
   # Modify the timezone in `myepisodes2ical.php` to your local timezone.
   # Upload to your personal web server
 
-`**` Your MD5 password is NOT your normal password. To find your MD5 password, return to www.MyEpisodes.com. Log in and go to the [http://www.myepisodes.com/cp.php MyEpisodes.com Control Panel]. Copy your MD5 hashed password and paste it into `myepisodes2ical.php`.
+`**` Your MD5 password is NOT your normal password. To find your MD5 password, return to !MyEpisodes.com. Log in and go to the [http://www.myepisodes.com/cp.php MyEpisodes.com Control Panel]. Copy your MD5 hashed password and paste it into `myepisodes2ical.php`.
 
 ----
 
