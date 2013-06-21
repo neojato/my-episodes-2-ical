@@ -11,7 +11,6 @@
     <Require feature="dynamic-height"/>
 	  <Require feature="google.calendar-0.5"/>
     <Require feature="com.google.gadgets.analytics"/>
-    <Require feature="minimessage"/>
   </ModulePrefs>
   <UserPref name="uid" display_name="Username" default_value=""/>
   <UserPref name="pwdmd5" display_name="MD5 Access Key" default_value=""/>
