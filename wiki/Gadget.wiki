@@ -10,9 +10,11 @@
 ----
 
 ===Gadget Login===
-When you first add the gadget to your Google Calendar you see the log in form as shown. Enter the username you created for !MyEpisodes.com as well as the Md5 hashed password provided from the !MyEpisodes.com Control Panel.
+When you first add the gadget to your Google Calendar you see the log in form as shown. Enter the username you created for !MyEpisodes.com as well as the Md5 hashed password`**` provided from the !MyEpisodes.com Control Panel.
 
 [https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot6.png]
+
+`**` Your MD5 password is NOT your normal password. To find your MD5 password, return to !MyEpisodes.com. Log in and go to the [http://www.myepisodes.com/cp.php MyEpisodes.com Control Panel]. Copy your MD5 hashed password and paste it into the form.
 
 ----
 
