@@ -1,7 +1,7 @@
- * [Gadget Introduction]
- * [ArticleNew What's New?]
- * [ArticleHowTo How To]
+ * [Introduction Introduction]
+ * [WhatsNew What's New?]
+ * [HowTo How To]
  * Gadget Setup
-   * [ArticleEasy Calendar Gadget]
-   * [ArticleHard Personal Server Script]
- * [ArticleVersion Version History]
+   * [GadgetSetup Calendar Gadget]
+   * [ScriptSetup Personal Server Script]
+ * [VersionHistory Version History]
