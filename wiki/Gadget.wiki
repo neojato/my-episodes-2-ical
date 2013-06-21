@@ -1,29 +1,46 @@
 =*Gadget Interface*=
 
   * Gadget Views
+    * [Gadget#Login_View Gadget Login]
     * [Gadget#Default_Gadget_View Default View]
-    * [Gadget#Hover_for_episode_information Episode Information]
+    * [Gadget#Episode_information Episode Information]
     * [Gadget#Create_an_episode_reminder Episode Reminders]
-    * [Gadget#Switch_feed_types Switch Feeds]
+    * [Gadget#Switch_feed_types Switch Feeds / View XML / Logout]
+
+----
+
+===Gadget Login===
+When you first add the gadget to your Google Calendar you see the log in form as shown. Enter the username you created for !MyEpisodes.com as well as the Md5 hashed password provided from the !MyEpisodes.com Control Panel.
+
+[https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot6.png]
 
 ----
 
 ===Default Gadget View===
+After you log into the gadget it loads using the default '!MyList' feed.
+
 [https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot1.1.png]
 
 ----
 
-===Hover for episode information===
+===Episode information===
+Hovering over a show with your mouse will trigger text to appear detailing information about that episode.
+
 [https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot2.1.png]
 
 ----
 
 ===Create an episode reminder===
 Clicking the 'Add to Calendar' button triggers the 'Add Event' screen within Google Calendar and fills out the episode information for you. Feel free to update any of the fields and reminders. Don't forget to click 'Save' at the top!
-[https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot3.1.png][https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot5.png]
+<table border='0'><tr><td>[https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot5.png]</td><td>[https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot3.1.png]</td></tr></table>
 
 ----
 
 ===Switch feed types===
-Select the 'menu' icon in the lower right of the gadget to choose from the available feed types. Switching the feed causes the gadget to refresh (doesn't refresh Google Calendar though) and displays the selected feed.
+Select the 'menu' icon in the lower right of the gadget to choose from the available feed types. Switching the feed causes the gadget to refresh (it does not refresh Google Calendar though) and displays the selected feed.
+
+From this menu you are also able to view the raw XML from !MyEpisodes.com by clicking the 'View Feed XML' menu item. This will view the raw XML for the currently selected feed. If you wish to view the raw XML of a different feed, select that feed first before selecting the 'View Feed XML' menu item.
+
+You can also log out of the gadget which sends you back to the [Gadget#Login_View login screen].
+
 [https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot4.1.png]
