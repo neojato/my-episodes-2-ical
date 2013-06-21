@@ -1,5 +1,13 @@
 =*Gadget Interface*=
 
+  * Gadget Views
+    * [Gadget#Default_Gadget_View Default View]
+    * [Gadget#Hover_for_episode_information Episode Information]
+    * [Gadget#Create_an_episode_reminder Episode Reminders]
+    * [Gadget#Switch_feed_types Switch Feeds]
+
+----
+
 ===Default Gadget View===
 [https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot1.1.png]
 
@@ -10,10 +18,10 @@
 
 ----
 
-===Create an episode reminder event on your Google Calendar===
+===Create an episode reminder===
 [https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot3.1.png]
 
 ----
 
-===Switch MyEpisodes feed types===
+===Switch feed types===
 [https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot4.1.png]
