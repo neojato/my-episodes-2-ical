@@ -19,9 +19,11 @@
 ----
 
 ===Create an episode reminder===
-[https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot3.1.png]
+Clicking the 'Add to Calendar' button triggers the 'Add Event' screen within Google Calendar and fills out the episode information for you. Feel free to update any of the fields and reminders. Don't forget to click 'Save' at the top!
+[https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot3.1.png][https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot5.png]
 
 ----
 
 ===Switch feed types===
+Select the 'menu' icon in the lower right of the gadget to choose from the available feed types. Switching the feed causes the gadget to refresh (doesn't refresh Google Calendar though) and displays the selected feed.
 [https://my-episodes-2-ical.googlecode.com/svn/wiki/images/0.8.4/screenshot4.1.png]
