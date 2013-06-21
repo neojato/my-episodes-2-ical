@@ -1,5 +1,5 @@
 =*Adding the Google Calendar Gadget*=
-  # Add the gadget to your calendar:
+  # Add the gadget to your calendar: 
     [https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml https://my-episodes-2-ical.googlecode.com/svn/wiki/images/addToGC.gif]
   # Enter your MyEpisodes.com username, and md5-password`**`
   # It will then display the MyEpisodes feed of your shows in a clean gadget UI within Google Calendar.
