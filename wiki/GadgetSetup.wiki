@@ -6,4 +6,4 @@
     * Other feeds to choose from: MyList, Today, Tomorrow, Unwatched, Unacquired
 
 
-`**` Your MD5 password is NOT your normal password. To find your MD5 password, return to MyEpisodes.com. Log in and go to the [http://www.myepisodes.com/cp.php MyEpisodes.com Control Panel]. Copy your MD5 hashed password and paste it into the form.
+`**` Your MD5 password is NOT your normal password. To find your MD5 password, return to www.MyEpisodes.com. Log in and go to the [http://www.myepisodes.com/cp.php MyEpisodes.com Control Panel]. Copy your MD5 hashed password and paste it into the form.
