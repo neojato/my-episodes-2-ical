@@ -1,4 +1,4 @@
-=*How to Use*=
+=*Where to start?*=
   # Create an account at http://www.myepisodes.com/
   # Add all of your favorite TV shows.
   # For correct episode air dates/times select GMT and enter the offset on the !MyEpisodes.com Control Panel
