@@ -67,7 +67,7 @@ function response(obj) {
     var feed = obj.data;
     var html = "";
     
-    document.getElementById('content_div').innerHTML = "<div id='summary_feed'></div>";
+    document.getElementById('content_div').innerHTML += "<div id='summary_feed'></div>";
     
     // access the data for a given entry
     if (typeof(feed) !== 'undefined' && feed.Entry) {
@@ -284,7 +284,7 @@ function response(obj) {
         html += "<input type='button' onclick='updateFeed();' value='Show Feed'>";
     }
 
-    document.getElementById('content_div').innerHTML = html;
+    document.getElementById('content_div').innerHTML += html;
     gadgets.window.adjustHeight();
 };
 
