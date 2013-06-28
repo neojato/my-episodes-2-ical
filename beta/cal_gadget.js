@@ -16,7 +16,7 @@ if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.te
     addStyles();
 }
 
-document.getElementById('content_div').innerHTML = "<div id='content_feed'>Loading...</div>";
+// document.getElementById('content_div').innerHTML = "<div id='content_feed'>Loading...</div>";
 
 function getFeed() {
     var url = 'http://www.myepisodes.com/rss.php?feed=' + prefs.getString('feed');
@@ -26,7 +26,7 @@ function getFeed() {
         params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.FEED;
         params[gadgets.io.RequestParameters.GET_SUMMARIES] = true;
         params[gadgets.io.RequestParameters.NUM_ENTRIES] = 200;
-        document.getElementById('content_div').innerHTML = "<div id='content_feed'>Retrieving Feed...</div>";
+        // document.getElementById('content_div').innerHTML = "<div id='content_feed'>Retrieving Feed...</div>";
         ga.reportPageview('/view/my-episodes-2-ical-beta/'+prefs.getString('feed'));
         gadgets.io.makeRequest(url, response, params);
     }
@@ -67,7 +67,7 @@ function response(obj) {
     var feed = obj.data;
     var html = "";
     
-    document.getElementById('content_div').innerHTML += "<div id='summary_feed' style='display: none;'></div>";
+    document.getElementById('content_div').innerHTML = "<div id='summary_feed' style='display: none;'></div>";
     
     // access the data for a given entry
     if (typeof(feed) !== 'undefined' && feed.Entry) {
@@ -122,8 +122,8 @@ function response(obj) {
                     seasonId = seasonId[0].substr(1);
                 }
                 var episodeId = episode.split('x', 2);
-                if (episodeId[0].substr(0) == '0') {
-                    episodeId = episodeId[0].substr(1);
+                if (episodeId[1].substr(0) == '0') {
+                    episodeId = episodeId[1].substr(1);
                 }
                 var summary = 'testing';
                 alert(showName+' season '+seasonId+' episode '+episodeId);
