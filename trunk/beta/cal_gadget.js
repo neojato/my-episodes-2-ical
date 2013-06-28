@@ -44,14 +44,17 @@ function getSummaryHTML(link) {
 function responseSummary(obj) {
    var summary = obj.text;
    var id = summary.split('<meta name="description" content="', 2);
-   summary = summary.split("show_synopsis'>", 2);
+   summary = summary.split("<div class='show_synopsis'>", 2);
    summary = summary[1].split('<br>', 1);
    summary = summary[0].trim();
-   if (summary.substr(0, 5) == '</div>') {
-        summary = 'n/a';
-   }
-   else if (summary.substr(0, 6) == '</div>') {
-        summary = 'N/A';
+   if (summary.substr(0, 6) == '</div>') {
+        var summary = obj.text;
+        summary = summary.split("<div class='left padding_bottom_10'>", 2);
+        summary = summary[1].split('<br>', 1);
+        summary = summary[0].trim();
+        if (summary.substr(0, 9) == '<a title=') {
+           summary = 'n/a';
+        }
    }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
