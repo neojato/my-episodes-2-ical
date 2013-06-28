@@ -52,7 +52,7 @@ function responseSummary(obj) {
         summary = summary.split("<div class='left padding_bottom_10'>", 2);
         summary = summary[1].split('<br>', 1);
         summary = summary[0].trim();
-        if (summary.substr(0, 9) == '<a title=') {
+        if (summary.substr(0, 9) == '<a title=' || summary.match(/Click here to add a summary/g) == 'Click here to add a summary') {
            summary = 'n/a';
         }
    }
