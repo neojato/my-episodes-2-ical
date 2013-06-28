@@ -52,7 +52,7 @@ function responseSummary(obj) {
    }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
-   var html = '<div id="'+id[0].trim()+'">'+summary+'</div>;
+   var html = '<div id="'+id[0].trim()+'">'+summary+'</div>';
    alert(html);
    // document.getElementById('summary_feed').innerHTML = html;
 };
