@@ -118,12 +118,12 @@ function response(obj) {
                 showTitle = showTitle.replace(/^\s+|\s+$/g, ""); // remove extra spaces (ie. trim)
                 
                 var seasonId = episode.split('x', 1);
-                if (seasonId.substr(0) == '0') {
-                    seasonId = seasonId.substr(1);
+                if (seasonId[0].substr(0) == '0') {
+                    seasonId = seasonId[0].substr(1);
                 }
                 var episodeId = episode.split('x', 2);
-                if (episodeId.substr(0) == '0') {
-                    episodeId = episodeId.substr(1);
+                if (episodeId[0].substr(0) == '0') {
+                    episodeId = episodeId[0].substr(1);
                 }
                 var summary = document.getElementById(showName+' season '+seasonId+' episode '+episodeId).innerHTML
 
