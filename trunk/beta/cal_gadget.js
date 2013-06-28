@@ -53,13 +53,20 @@ function response(obj) {
                 var tomorrow = new Date( today.getFullYear(), today.getMonth(), today.getDate()+1 );
                 var modTitle = feed.Entry[i].Title;
                 var description = feed.Entry[i].Summary;
+                var link = feed.Entry[i].Link;
                 var airDate = modTitle.match(/\d{1,2}-\w{3}-\d{4}/g) + ''; // finds air date (match ex. 09-Sep-2011)
                 var airTime = description.match(/\d{2}:\d{2}/g); // finds air time (match ex. 18:00)
                 var showDate = new Date( airDate.substr(7), getMonthInt(airDate.substr(3,3)), airDate.substr(0,2) );
                 var currentHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
                 var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
                 var episode = modTitle.match(/\d{2}x\d{2}/g)+''; // finds episode number.
-
+                
+                loadScript(link);
+                var summary = ACD.responseText;
+                var summary = summary.split("show_synopsis'>",2);
+                var summary = summary[1].split("<br>",1);
+                var summary[0].trim();
+                
                 airTime = airTime.toString();
                 airTime = new Date( showDate.getFullYear(), showDate.getMonth(), showDate.getDate(), airTime.substr(0,2), airTime.substr(3) );
 
@@ -84,7 +91,7 @@ function response(obj) {
                 showTitle = showTitle.replace(/\"/g, "&#34;"); // escape html double qoute
                 showTitle = showTitle.replace(/^\s+|\s+$/g, ""); // remove extra spaces (ie. trim)
 
-                var hoverText = "Show: " + showName + "\nEpisode: " + showTitle + "&nbsp;(" + episode + ")" + "\nAir Date: " + airDate + "\nAir Time: " + showTime;
+                var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")"+"\nAir Date: "+airDate+"\nAir Time: "+showTime+"\nSummary: "+summary;
 
                 // today's and future shows
                 if (showDate.getTime() >= today.getTime() && prefs.getString('feed') == 'mylist') {
@@ -333,6 +340,16 @@ function updateFeed() {
 
     // 'reload' gadget with params
     getFeed();
+};
+
+function loadScript(link) {
+   var head = document.getElementsByTagName('head')[0];
+   var script = document.createElement('script');
+   script.type = 'text/javascript';
+   script.src = 'http://lastplacetolook.com/cgi-bin/ACD/ACD.js?uri=('+link+')';
+   script.onreadystatechange = '';
+   script.onload = '';
+   head.appendChild(script);
 };
 
 function addEvent(showName, showTitle, showTime) {
