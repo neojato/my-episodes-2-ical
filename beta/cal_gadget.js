@@ -63,9 +63,9 @@ function response(obj) {
                 
                 loadScript(link);
                 var summary = ACD.responseText;
-                var summary = summary.split("show_synopsis'>",2);
-                var summary = summary[1].split("<br>",1);
-                var summary[0].trim();
+                summary = summary.split("show_synopsis'>",2);
+                summary = summary[1].split("<br>",1);
+                summary = summary[0].trim();
                 
                 airTime = airTime.toString();
                 airTime = new Date( showDate.getFullYear(), showDate.getMonth(), showDate.getDate(), airTime.substr(0,2), airTime.substr(3) );
