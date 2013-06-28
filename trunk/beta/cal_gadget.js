@@ -59,8 +59,7 @@ function responseSummary(obj) {
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
    var html = '<div id="'+id[0].trim()+'">'+summary+'</div>';
-   alert(html);
-   // document.getElementById('summary_feed').innerHTML = html;
+   document.getElementById('summary_feed').innerHTML += html;
 };
  
 function response(obj) {
@@ -91,7 +90,8 @@ function response(obj) {
                 var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
                 var episode = modTitle.match(/\d{2}x\d{2}/g)+''; // finds episode number.
                 
-                var summary = getSummaryHTML(link);
+                // get episode summary info for later
+                getSummaryHTML(link);
                 
                 airTime = airTime.toString();
                 airTime = new Date( showDate.getFullYear(), showDate.getMonth(), showDate.getDate(), airTime.substr(0,2), airTime.substr(3) );
@@ -116,8 +116,19 @@ function response(obj) {
                 showTitle = showTitle.replace(/\'/g, "&#39;"); // escape html single qoute
                 showTitle = showTitle.replace(/\"/g, "&#34;"); // escape html double qoute
                 showTitle = showTitle.replace(/^\s+|\s+$/g, ""); // remove extra spaces (ie. trim)
+                
+                var seasonId = episode.split('x', 1);
+                if (seasonId.substr(0) == '0') {
+                    seasonId = seasonId.substr(1);
+                }
+                var episodeId = episode.split('x', 2);
+                if (episodeId.substr(0) == '0') {
+                    episodeId = episodeId.substr(1);
+                }
+                var summary = document.getElementById(showName+' season '+seasonId+' episode '+episodeId).innerHTML
 
-                var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")"+"\nAir Date: "+airDate+"\nAir Time: "+showTime+"\nSummary: "+summary;
+                var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
+                hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime+"\nSummary: "+summary;
 
                 // today's and future shows
                 if (showDate.getTime() >= today.getTime() && prefs.getString('feed') == 'mylist') {
