@@ -67,7 +67,7 @@ function response(obj) {
     var feed = obj.data;
     var html = "";
     
-    document.getElementById('content_div').innerHTML += "<div id='summary_feed'></div>";
+    document.getElementById('content_div').innerHTML += "<div id='summary_feed' style='display: none;'></div>";
     
     // access the data for a given entry
     if (typeof(feed) !== 'undefined' && feed.Entry) {
@@ -125,7 +125,9 @@ function response(obj) {
                 if (episodeId[0].substr(0) == '0') {
                     episodeId = episodeId[0].substr(1);
                 }
-                var summary = document.getElementById(showName+' season '+seasonId+' episode '+episodeId).innerHTML
+                var summary = 'testing';
+                alert(showName+' season '+seasonId+' episode '+episodeId);
+                // var summary = document.getElementById(showName+' season '+seasonId+' episode '+episodeId).innerHTML
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
                 hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime+"\nSummary: "+summary;
