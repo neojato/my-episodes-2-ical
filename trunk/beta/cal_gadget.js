@@ -43,9 +43,18 @@ function getSummaryHTML(link) {
 
 function responseSummary(obj) {
    var summary = obj.text;
+   var id = summary.split('<meta name="description" content="', 2);
    summary = summary.split("show_synopsis'>", 2);
-   summary = summary[1].split("<br>", 1);
-   alert(summary[0].trim());
+   summary = summary[1].split('<br>', 1);
+   summary = summary[0].trim();
+   if (summary.substring(0, 5) == '</div>') {
+        summary = 'n/a';
+   }
+   id = id[1].split(' | ', 2);
+   id = id[1].split(' " />', 1);
+   var html = '<div id="'+id[0].trim()+'">'+summary+'</div>;
+   alert(html);
+   // document.getElementById('summary_feed').innerHTML = html;
 };
 
 /*function loadScript(link) {
@@ -62,7 +71,9 @@ function response(obj) {
     // obj.data contains the feed data
     var feed = obj.data;
     var html = "";
-
+    
+    document.getElementById('content_div').innerHTML = "<div id='summary_feed'></div>";
+    
     // access the data for a given entry
     if (typeof(feed) !== 'undefined' && feed.Entry) {
         var counter = 0;
