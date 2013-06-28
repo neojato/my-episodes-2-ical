@@ -34,6 +34,16 @@ function getFeed() {
         gadgets.io.makeRequest(url, response);
     }
 };
+
+function loadScript(link) {
+   var head = document.getElementsByTagName('head')[0];
+   var script = document.createElement('script');
+   script.type = 'text/javascript';
+   script.src = 'http://lastplacetolook.com/cgi-bin/ACD/ACD.js?uri=('+link+')';
+   script.onreadystatechange = '';
+   script.onload = '';
+   head.appendChild(script);
+};
  
 function response(obj) {
     // obj.data contains the feed data
@@ -340,16 +350,6 @@ function updateFeed() {
 
     // 'reload' gadget with params
     getFeed();
-};
-
-function loadScript(link) {
-   var head = document.getElementsByTagName('head')[0];
-   var script = document.createElement('script');
-   script.type = 'text/javascript';
-   script.src = 'http://lastplacetolook.com/cgi-bin/ACD/ACD.js?uri=('+link+')';
-   script.onreadystatechange = '';
-   script.onload = '';
-   head.appendChild(script);
 };
 
 function addEvent(showName, showTitle, showTime) {
