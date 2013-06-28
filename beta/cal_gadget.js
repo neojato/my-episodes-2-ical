@@ -8,8 +8,8 @@ var version = '0.8.4b';
 var div = document.createElement("div");
 div.id = 'status';
 div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br><div style="text-align: center;"><a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_top">Upgrade Now!</a></div>';
-alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
-msg.createStaticMessage(div);
+// alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
+// msg.createStaticMessage(div);
 
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
 if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
