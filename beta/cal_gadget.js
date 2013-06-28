@@ -2,7 +2,7 @@
 var ga = new _IG_GA('UA-7344999-15');
 var prefs = new gadgets.Prefs();
 var msg = new gadgets.MiniMessage();
-var version = '0.8.4b';
+var version = '0.8.5b';
 
 // create update gadget message
 var div = document.createElement("div");
@@ -47,7 +47,7 @@ function responseSummary(obj) {
    summary = summary.split("show_synopsis'>", 2);
    summary = summary[1].split('<br>', 1);
    summary = summary[0].trim();
-   if (summary.substring(0, 5) == '</div>') {
+   if (summary.substr(0, 5) == '</div>') {
         summary = 'n/a';
    }
    id = id[1].split(' | ', 2);
