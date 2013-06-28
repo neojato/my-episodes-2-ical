@@ -35,15 +35,28 @@ function getFeed() {
     }
 };
 
-function loadScript(link) {
+function getSummaryHTML(link) {
+   var params = {};  
+   params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
+   gadgets.io.makeRequest(link, responseSummary, params);
+};
+
+function responseSummary(obj) {
+   var summary = obj.text;
+   summary = summary.split("show_synopsis'>", 2);
+   summary = summary[1].split("<br>", 1);
+   return summary[0].trim();
+};
+
+/*function loadScript(link) {
    var head = document.getElementsByTagName('head')[0];
    var script = document.createElement('script');
    script.type = 'text/javascript';
-   script.src = 'http://lastplacetolook.com/cgi-bin/ACD/ACD.js?uri=('+link+')';
+   script.src = 'https://lastplacetolook.com/cgi-bin/ACD/ACD.js?uri=('+link+')';
    script.onreadystatechange = '';
    script.onload = '';
    head.appendChild(script);
-};
+};*/
  
 function response(obj) {
     // obj.data contains the feed data
@@ -71,11 +84,7 @@ function response(obj) {
                 var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
                 var episode = modTitle.match(/\d{2}x\d{2}/g)+''; // finds episode number.
                 
-                var ACD = loadScript(link);
-                var summary = ACD.responseText;
-                summary = summary.split("show_synopsis'>",2);
-                summary = summary[1].split("<br>",1);
-                summary = summary[0].trim();
+                var summary = getSummaryHTML(link);
                 
                 airTime = airTime.toString();
                 airTime = new Date( showDate.getFullYear(), showDate.getMonth(), showDate.getDate(), airTime.substr(0,2), airTime.substr(3) );
