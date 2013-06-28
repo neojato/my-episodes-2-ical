@@ -127,8 +127,8 @@ function response(obj) {
                 }
                 var summaryId = showName+' season '+seasonId+' episode '+episodeId+'';
                 var summary = 'n/a';
-                if (document.getElementById('ep-'summaryId.trim())) {
-                    summary = document.getElementById('ep-'summaryId.trim()).innerHTML
+                if (document.getElementById('ep-'+summaryId)) {
+                    summary = document.getElementById('ep-'+summaryId).innerHTML
                 }
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
