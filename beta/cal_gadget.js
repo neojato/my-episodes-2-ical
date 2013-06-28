@@ -58,7 +58,7 @@ function responseSummary(obj) {
    }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
-   var html = '<div id="'+id[0].trim()+'">'+summary+'</div>';
+   var html = '<div id="ep-'+id[0].trim()+'">'+summary+'</div>';
    document.getElementById('summary_feed').innerHTML += html;
 };
  
@@ -126,7 +126,10 @@ function response(obj) {
                     episodeId = episodeId[1].substr(1);
                 }
                 var summaryId = showName+' season '+seasonId+' episode '+episodeId+'';
-                var summary = summaryId.trim(); // document.getElementById(summaryId.trim()).innerHTML
+                var summary = 'n/a';
+                if (document.getElementById('ep-'summaryId.trim())) {
+                    summary = document.getElementById('ep-'summaryId.trim()).innerHTML
+                }
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
                 hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime+"\nSummary: "+summary;
