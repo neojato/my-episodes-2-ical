@@ -125,7 +125,7 @@ function response(obj) {
                 if (episodeId[1].substr(0, 1) == '0') {
                     episodeId = episodeId[1].substr(1);
                 }
-                var summary = document.getElementById(showName+' season '+seasonId+' episode '+episodeId).innerHTML
+                var summary = document.getElementById("'"+showName+' season '+seasonId+' episode '+episodeId+"'").innerHTML
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
                 hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime+"\nSummary: "+summary;
