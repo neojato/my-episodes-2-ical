@@ -126,7 +126,7 @@ function response(obj) {
                     episodeId = episodeId[1].substr(1);
                 }
                 var summaryId = showName+' season '+seasonId+' episode '+episodeId+'';
-                var summary = document.getElementById(summaryId.trim()).innerHTML
+                var summary = summaryId.trim(); // document.getElementById(summaryId.trim()).innerHTML
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
                 hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime+"\nSummary: "+summary;
