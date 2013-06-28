@@ -45,7 +45,7 @@ function responseSummary(obj) {
    var summary = obj.text;
    summary = summary.split("show_synopsis'>", 2);
    summary = summary[1].split("<br>", 1);
-   return summary[0].trim();
+   alert(summary[0].trim());
 };
 
 /*function loadScript(link) {
