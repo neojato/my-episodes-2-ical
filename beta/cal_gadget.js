@@ -50,22 +50,15 @@ function responseSummary(obj) {
    if (summary.substr(0, 5) == '</div>') {
         summary = 'n/a';
    }
+   else if (summary.substr(0, 6) == '</div>') {
+        summary = 'N/A';
+   }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
    var html = '<div id="'+id[0].trim()+'">'+summary+'</div>';
    alert(html);
    // document.getElementById('summary_feed').innerHTML = html;
 };
-
-/*function loadScript(link) {
-   var head = document.getElementsByTagName('head')[0];
-   var script = document.createElement('script');
-   script.type = 'text/javascript';
-   script.src = 'https://lastplacetolook.com/cgi-bin/ACD/ACD.js?uri=('+link+')';
-   script.onreadystatechange = '';
-   script.onload = '';
-   head.appendChild(script);
-};*/
  
 function response(obj) {
     // obj.data contains the feed data
