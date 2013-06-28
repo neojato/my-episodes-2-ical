@@ -381,8 +381,8 @@ function updateFeed() {
 
 function getSummary(id) {
     var summary = '';
-    if (document.getElementById('ep-'+summaryId)) {
-        summary = document.getElementById('ep-'+summaryId).innerHTML;
+    if (document.getElementById('ep-'+id)) {
+        summary = document.getElementById('ep-'+id).innerHTML;
     }
     return summary;
 };
