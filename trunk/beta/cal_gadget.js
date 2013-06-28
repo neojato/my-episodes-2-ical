@@ -126,13 +126,9 @@ function response(obj) {
                     episodeId = episodeId[1].substr(1);
                 }
                 var summaryId = showName+' season '+seasonId+' episode '+episodeId+'';
-                var summary = 'n/a';
-                if (document.getElementById('ep-'+summaryId)) {
-                    summary = document.getElementById('ep-'+summaryId).innerHTML
-                }
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
-                hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime+"\nSummary: "+summary;
+                hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime;
 
                 // today's and future shows
                 if (showDate.getTime() >= today.getTime() && prefs.getString('feed') == 'mylist') {
@@ -153,7 +149,7 @@ function response(obj) {
                         dateHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
                     }
                     html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' title='" + hoverText + "'>";
-                    html += "<div role='episode-2-event' onclick='Javascript:addEvent(&#39;" + showName + "&#39;, &#39;" + showTitle + "&#39;, &#39;" + airTime + "&#39;);' style='border:1px solid #CCC;height:20px;float:left;cursor:pointer;vertical-align:middle;position:relative;display:inline-block;font-size:12px;font-weight:bold;' title='Add to calendar'>&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</div>";
+                    html += "<div role='episode-2-event' onclick='Javascript:addEvent(&#39;" + showName + "&#39;, &#39;" + showTitle + "&#39;, &#39;" + airTime + "&#39;, &#39;" + summaryId + "&#39;);' style='border:1px solid #CCC;height:20px;float:left;cursor:pointer;vertical-align:middle;position:relative;display:inline-block;font-size:12px;font-weight:bold;' title='Add to calendar'>&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</div>";
                     id = "episode" + counter;
                     if (showName.length >= 20) {
                         showName = showName.substr(0,17) + '...';
@@ -383,10 +379,19 @@ function updateFeed() {
     getFeed();
 };
 
-function addEvent(showName, showTitle, showTime) {
+function getSummary(id) {
+    var summary = '';
+    if (document.getElementById('ep-'+summaryId)) {
+        summary = document.getElementById('ep-'+summaryId).innerHTML;
+    }
+    return summary;
+};
+
+function addEvent(showName, showTitle, showTime, summaryId) {
     var showTime = new Date(showTime);
     var endTime = new Date(showTime);
-
+    var summary = getSummary(summaryId);
+    
     // convert to string
     startYear = showTime.getFullYear().toString();
     startMonth = (showTime.getMonth()+1).toString();
@@ -403,7 +408,7 @@ function addEvent(showName, showTitle, showTime) {
 
     var eventData = {
         title: showName,
-        details: showTitle,
+        details: showTitle+'\n\n'+summary,
         allDay : false,
         startTime : { year: startYear, month: startMonth, date: startDay, hour: startHour, minute: startMinute, second: 0 },
         endTime : { year: endYear, month: endMonth, date: endDay, hour: endHour, minute: endMinute, second: 0 }
