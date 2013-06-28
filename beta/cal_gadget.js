@@ -118,17 +118,16 @@ function response(obj) {
                 showTitle = showTitle.replace(/^\s+|\s+$/g, ""); // remove extra spaces (ie. trim)
                 
                 var seasonId = episode.split('x', 1);
-                alert(seasonId[0].substr(0));
-                if (seasonId[0].substr(0) == '0') {
+                if (seasonId[0].substr(0, 1) == '0') {
                     seasonId = seasonId[0].substr(1);
                 }
                 var episodeId = episode.split('x', 2);
-                alert(episodeId[0].substr(0));
-                if (episodeId[1].substr(0) == '0') {
+                alert(episodeId[1].substr(0, 1));
+                if (episodeId[1].substr(0, 1) == '0') {
                     episodeId = episodeId[1].substr(1);
                 }
                 var summary = 'testing stuff';
-                // alert(showName+' season '+seasonId+' episode '+episodeId);
+                alert(showName+' season '+seasonId+' episode '+episodeId);
                 // var summary = document.getElementById(showName+' season '+seasonId+' episode '+episodeId).innerHTML
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
