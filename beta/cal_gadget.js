@@ -61,7 +61,7 @@ function response(obj) {
                 var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
                 var episode = modTitle.match(/\d{2}x\d{2}/g)+''; // finds episode number.
                 
-                loadScript(link);
+                var ACD = loadScript(link);
                 var summary = ACD.responseText;
                 summary = summary.split("show_synopsis'>",2);
                 summary = summary[1].split("<br>",1);
