@@ -6,10 +6,13 @@ var version = '0.8.5b';
 
 // create update gadget message
 var div = document.createElement("div");
-div.id = 'status';
-div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br><div style="text-align: center;"><a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_top">Upgrade Now!</a></div>';
+div.id = 'modal';
+div.setAttribute('style', 'border:3px solid black; background-color:#9999ff; padding:25px; font-size:150%; text-align:center; display:none;');
+div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br><div style="text-align: center;"><a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_top">Upgrade Now!</a><input type="button" value="OK" onClick="Popup.hide(\'modal\')"></div>';
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
 // msg.createStaticMessage(div);
+
+
 
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
 if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
@@ -148,7 +151,7 @@ function response(obj) {
                         html += "<div><div id='" + id + "' style='cursor:default;font-weight:bold;border-bottom:1px solid #D8D8D8;border-top:1px solid #D8D8D8;padding-top:5px;padding-bottom:5px;" + currentStyle + "'>" + currentHeader + todayText + "</div>";
                         dateHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
                     }
-                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' title='" + hoverText + "'>";
+                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' onclick='Popup.showModal(\'modal\');return false;' title='" + hoverText + "'>";
                     html += "<div role='episode-2-event' onclick='Javascript:addEvent(&#39;" + showName + "&#39;, &#39;" + showTitle + "&#39;, &#39;" + airTime + "&#39;, &#39;" + summaryId + "&#39;);' style='border:1px solid #CCC;height:20px;float:left;cursor:pointer;vertical-align:middle;position:relative;display:inline-block;font-size:12px;font-weight:bold;' title='Add to calendar'>&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</div>";
                     id = "episode" + counter;
                     if (showName.length >= 20) {
