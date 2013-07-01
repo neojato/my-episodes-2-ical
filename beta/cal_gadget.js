@@ -165,7 +165,7 @@ function response(obj) {
                     if (showName.length >= 20) {
                         showName = showName.substr(0,17) + '...';
                     }
-                    html += "<div role='episode-info' id='"+id+"' onclick='return getModalPopUp(&#39;"+hoverText+"&#39;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                    html += "<div role='episode-info' id='"+id+"' onclick='alert(&#39;"+hoverText+"&#39;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
@@ -300,7 +300,6 @@ function response(obj) {
 };
 
 function getModalPopUp(divText) {
-    alert(divText);
     // return Popup.show(null,null,null,{'content':divText, 'width':200,'height':200, 'style':{'border':'1px solid black','backgroundColor':'#9999ff'}});
 };
 
