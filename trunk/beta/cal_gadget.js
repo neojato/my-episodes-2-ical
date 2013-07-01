@@ -13,6 +13,13 @@ var version = '0.8.5b';
 // msg.createStaticMessage(div);
 
 
+// load the Popup Library
+var oHead = document.getElementById('head')[0];
+var oScript = document.createElement('script');
+oScript.type = 'text/javascript';
+oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
+oHead.appendChild(oScript);
+
 
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
 if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
