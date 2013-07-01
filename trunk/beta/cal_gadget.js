@@ -300,16 +300,7 @@ function response(obj) {
 };
 
 function getModalPopUp(divText) {
-    var pop = new Popup();
-    pop.content = divText;
-    pop.width=100;
-    pop.height=100;
-    pop.style = {'border':'1px solid black','backgroundColor':'white'};
-    pop.modal = true;
-    pop.destroyDivOnHide = true;
-    pop.destroyObjectsOnHide = true;
-    pop.show();
-    return pop;
+    alert(divText);
     // return Popup.show(null,null,null,{'content':divText, 'width':200,'height':200, 'style':{'border':'1px solid black','backgroundColor':'#9999ff'}});
 };
 
