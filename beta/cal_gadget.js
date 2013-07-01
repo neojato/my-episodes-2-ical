@@ -14,7 +14,7 @@ var version = '0.8.5b';
 
 
 // load the Popup Library
-var oHead = document.getElementById('head')[0];
+var oHead = document.getElementsByTagName('head')[0];
 var oScript = document.createElement('script');
 oScript.type = 'text/javascript';
 oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
