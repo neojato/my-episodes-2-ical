@@ -5,10 +5,10 @@ var msg = new gadgets.MiniMessage();
 var version = '0.8.5b';
 
 // create update gadget message
-var div = document.createElement("div");
-div.id = 'modal';
-div.setAttribute('style', 'border:3px solid black; background-color:#9999ff; padding:25px; font-size:150%; text-align:center; display:none;');
-div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br><div style="text-align: center;"><a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_top">Upgrade Now!</a><input type="button" value="OK" onClick="Popup.hide(\'modal\')"></div>';
+// var div = document.createElement("div");
+// div.id = 'modal';
+// div.setAttribute('style', 'border:3px solid black; background-color:#9999ff; padding:25px; font-size:150%; text-align:center; display:none;');
+// div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br><div style="text-align: center;"><a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_top">Upgrade Now!</a><input type="button" value="OK" onClick="Popup.hide(\'modal\')"></div>';
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
 // msg.createStaticMessage(div);
 
