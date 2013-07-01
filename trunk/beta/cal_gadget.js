@@ -151,7 +151,8 @@ function response(obj) {
                         html += "<div><div id='" + id + "' style='cursor:default;font-weight:bold;border-bottom:1px solid #D8D8D8;border-top:1px solid #D8D8D8;padding-top:5px;padding-bottom:5px;" + currentStyle + "'>" + currentHeader + todayText + "</div>";
                         dateHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
                     }
-                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' onclick='Popup.showModal(\'modal\');return false;' title='" + hoverText + "'>";
+                    //  onclick='Javascript:Popup.showModal(\'modal\');return false;'
+                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' onclick='Javascript:alert(&#39;"+hoverText+"&#39;);' title='" + hoverText + "'>";
                     html += "<div role='episode-2-event' onclick='Javascript:addEvent(&#39;" + showName + "&#39;, &#39;" + showTitle + "&#39;, &#39;" + airTime + "&#39;, &#39;" + summaryId + "&#39;);' style='border:1px solid #CCC;height:20px;float:left;cursor:pointer;vertical-align:middle;position:relative;display:inline-block;font-size:12px;font-weight:bold;' title='Add to calendar'>&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</div>";
                     id = "episode" + counter;
                     if (showName.length >= 20) {
