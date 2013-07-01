@@ -152,13 +152,13 @@ function response(obj) {
                         dateHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
                     }
                     //  onclick='Javascript:Popup.showModal(\'modal\');return false;'
-                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' onclick='Javascript:alert(&#39;"+hoverText+"&#39;);' title='" + hoverText + "'>";
+                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' title='" + hoverText + "'>";
                     html += "<div role='episode-2-event' onclick='Javascript:addEvent(&#39;" + showName + "&#39;, &#39;" + showTitle + "&#39;, &#39;" + airTime + "&#39;, &#39;" + summaryId + "&#39;);' style='border:1px solid #CCC;height:20px;float:left;cursor:pointer;vertical-align:middle;position:relative;display:inline-block;font-size:12px;font-weight:bold;' title='Add to calendar'>&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</div>";
                     id = "episode" + counter;
                     if (showName.length >= 20) {
                         showName = showName.substr(0,17) + '...';
                     }
-                    html += "<div role='episode-info' id='" + id + "' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+ showName +"</div>";
+                    html += "<div role='episode-info' id='" + id + "' onclick='Javascript:alert(&#39;"+hoverText+"&#39;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+ showName +"</div>";
                     html += "</div>";
                     counter++;
                 }
