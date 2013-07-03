@@ -59,8 +59,8 @@ function responseSummary(obj) {
    }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
-   id = id.replace(' season ', '-');
-   id = id.replace(' episode ', '-');
+   id = id[0].replace(' season ', '-');
+   id = id[0].replace(' episode ', '-');
    
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
