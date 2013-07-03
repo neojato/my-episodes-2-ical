@@ -4,14 +4,8 @@ var prefs = new gadgets.Prefs();
 var msg = new gadgets.MiniMessage();
 var version = '0.8.5b';
 
-// create update gadget message
-// var div = document.createElement("div");
-// div.id = 'modal';
-// div.setAttribute('style', 'border:3px solid black; background-color:#9999ff; padding:25px; font-size:150%; text-align:center; display:none;');
-// div.innerHTML = 'Please upgrade to the latest version of the MyEpisodes gadget!<br><div style="text-align: center;"><a href="https://www.google.com/calendar/render?gadgeturl=https://my-episodes-2-ical.googlecode.com/svn/trunk/myepisodes2ical.xml" target="_top">Upgrade Now!</a><input type="button" value="OK" onClick="Popup.hide(\'modal\')"></div>';
+// update gadget message
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
-// msg.createStaticMessage(div);
-
 
 // load the Popup Library
 var oHead = document.getElementsByTagName('head')[0];
@@ -19,7 +13,6 @@ var oScript = document.createElement('script');
 oScript.type = 'text/javascript';
 oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
 oHead.appendChild(oScript);
-
 
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
 if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
@@ -34,7 +27,7 @@ function getFeed() {
         params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.FEED;
         params[gadgets.io.RequestParameters.GET_SUMMARIES] = true;
         params[gadgets.io.RequestParameters.NUM_ENTRIES] = 200;
-        msg.createTimerMessage('Retrieving Feed...', 1);
+        msg.createTimerMessage('Retrieving Feed...', 0.8);
         ga.reportPageview('/view/my-episodes-2-ical-beta/'+prefs.getString('feed'));
         gadgets.io.makeRequest(url, response, params);
     }
@@ -62,6 +55,9 @@ function responseSummary(obj) {
         summary = summary[0].trim();
         if (summary.substr(0, 9) == '<a title=' || summary.match(/Click here to add a summary/g) == 'Click here to add a summary') {
            summary = 'n/a';
+        }
+        else {
+           alert(summary);
         }
    }
    id = id[1].split(' | ', 2);
@@ -162,7 +158,7 @@ function response(obj) {
                     if (showName.length >= 20) {
                         showName = showName.substr(0,17) + '...';
                     }
-                  html += "<div role='episode-info' id='"+id+"' onclick='getModalPopUp(&#34;"+hoverText+"&#34;);'; style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                  html += "<div role='episode-info' id='"+id+"' onclick='getModalPopUp(&#34;"+hoverText+"&#34;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
