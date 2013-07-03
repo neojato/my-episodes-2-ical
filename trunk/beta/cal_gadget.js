@@ -60,8 +60,9 @@ function responseSummary(obj) {
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
    id = id[0].trim();
-   id = id[0].replace(' season ', '-');
-   id = id[0].replace(' episode ', '-');
+   alert(id);
+   // id = id[0].replace(' season ', '-');
+   // id = id[0].replace(' episode ', '-');
    
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
@@ -149,7 +150,7 @@ function response(obj) {
                 if (episodeId[1].substr(0, 1) == '0') {
                     episodeId = episodeId[1].substr(1);
                 }
-                var summaryId = showName+'-'+seasonId+'-'+episodeId+'';
+                var summaryId = showName+'-'+seasonId[0]+'-'+episodeId[0];
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
                 hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime;
