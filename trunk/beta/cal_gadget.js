@@ -59,23 +59,43 @@ function responseSummary(obj) {
    }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
-   var html = '<div id="ep-'+id[0].trim()+'">'+summary+'</div>';
-   document.getElementById('summary_feed').innerHTML += html;
+   
+   var sumFeed = document.getElementById('summary_feed');
+   var sumDiv = document.createElement('div');
+   sumDiv.id = 'ep-'+id[0].trim();
+   sumDiv.innerHTML = summary;
+   sumFeed.appendChild(sumDiv);
+   
+   // var html = '<div id="ep-'+id[0].trim()+'">'+summary+'</div>';
+   // document.getElementById('summary_feed').innerHTML += html;
 };
  
 function response(obj) {
     // obj.data contains the feed data
     var feed = obj.data;
+    var contentDiv = document.getElementById('content_div');
     var html = "";
     
-    document.getElementById('content_div').innerHTML = "<div id='summary_feed' style='display: none;'></div>";
+    // create content feed container
+    var contFeed = document.createElement('div');
+    contFeed.id = 'content_feed';
+    contFeed.setAttribute('style','overflow-x:hidden;overflow-y:auto;width:100%;height:280px;');
+    contentDiv.appendChild(contFeed);
+    
+    // create episode summary container
+    var sumFeed = document.createElement('div');
+    sumFeed.id = 'summary_feed';
+    sumFeed.setAttribute('style','display: none;');
+    contentDiv.appendChild(sumFeed);
+    
+    // document.getElementById('content_div').innerHTML = "<div id='summary_feed' style='display: none;'></div>";
     
     // access the data for a given entry
     if (typeof(feed) !== 'undefined' && feed.Entry) {
         var counter = 0;
         var dateHeader = '';
         var showHeader = '';
-        html += "<div id='content_feed' style='overflow-x:hidden;overflow-y:auto;width:100%;height:280px;'>";
+        // html += "<div id='content_feed' style='overflow-x:hidden;overflow-y:auto;width:100%;height:280px;'>";
         for(var i = 0; i < feed.Entry.length; i++) {
             if (feed.Entry[i].Title != 'No Episodes') {
                 var id = '';
@@ -156,7 +176,7 @@ function response(obj) {
                         showName = showName.substr(0,17) + '...';
                     }
                     summaryText = hoverText.replace(/\n/g, "<br/>");
-                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage(&#34;"+summaryText+"&#34;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage(&#34;"+summaryId+"&#34;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
@@ -255,7 +275,7 @@ function response(obj) {
             html += "<br/><br/>Go to <a href='http://www.myepisodes.com' target='_blank'>MyEpisodes.com</a> to add more TV shows.</div><br/><br/>";
         }
         
-        html += "</div></div>";
+        html += "</div>"; // </div>
         
         /* action bar */
         html += getActionButton();
@@ -285,13 +305,14 @@ function response(obj) {
         html += "</table></form>";
         html += "<input type='button' onclick='updateFeed();' value='Show Feed'>";
     }
-
-    document.getElementById('content_div').innerHTML += html;
+    
+    contFeed.innerHtml = html;
+    // document.getElementById('content_div').innerHTML += html;
     gadgets.window.adjustHeight();
 };
 
-function getSummaryMessage(divText) {
-    msg.createDismissibleMessage(divText);
+function getSummaryMessage(summaryId) {
+    msg.createDismissibleMessage(getSummary(summaryId));
 };
 
 /*function getModalPopUp(divText) {
@@ -390,9 +411,9 @@ function updateFeed() {
 };
 
 function getSummary(id) {
-    var summary = '';
+    var summary = 'ep-'+id+'<br/>';
     if (document.getElementById('ep-'+id)) {
-        summary = document.getElementById('ep-'+id).innerHTML;
+        summary += document.getElementById('ep-'+id).innerHTML;
     }
     return summary;
 };
