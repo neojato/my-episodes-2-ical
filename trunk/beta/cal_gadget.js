@@ -59,6 +59,8 @@ function responseSummary(obj) {
    }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
+   id = id.replace(' season ', '-');
+   id = id.replace(' episode ', '-');
    
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
@@ -146,7 +148,7 @@ function response(obj) {
                 if (episodeId[1].substr(0, 1) == '0') {
                     episodeId = episodeId[1].substr(1);
                 }
-                var summaryId = showName+' season '+seasonId+' episode '+episodeId+'';
+                var summaryId = showName+'-'+seasonId+'-'+episodeId+'';
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
                 hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime;
@@ -306,7 +308,8 @@ function response(obj) {
         html += "<input type='button' onclick='updateFeed();' value='Show Feed'>";
     }
     
-    contFeed.innerHtml = html;
+    var contentFeed= document.getElementById('content_feed');
+    contentFeed.innerHtml = html;
     // document.getElementById('content_div').innerHTML += html;
     gadgets.window.adjustHeight();
 };
