@@ -26,9 +26,6 @@ if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.te
     addStyles();
 }
 
-msg.createTimerMessage('Loading...', 3);
-// document.getElementById('content_div').innerHTML = "<div id='content_feed'>Loading...</div>";
-
 function getFeed() {
     var url = 'http://www.myepisodes.com/rss.php?feed=' + prefs.getString('feed');
     if (prefs.getString('uid') != '' && prefs.getString('pwdmd5') != '') {
@@ -37,8 +34,7 @@ function getFeed() {
         params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.FEED;
         params[gadgets.io.RequestParameters.GET_SUMMARIES] = true;
         params[gadgets.io.RequestParameters.NUM_ENTRIES] = 200;
-        msg.createTimerMessage('Retrieving Feed...', 3);
-        // document.getElementById('content_div').innerHTML = "<div id='content_feed'>Retrieving Feed...</div>";
+        msg.createTimerMessage('Retrieving Feed...', 1);
         ga.reportPageview('/view/my-episodes-2-ical-beta/'+prefs.getString('feed'));
         gadgets.io.makeRequest(url, response, params);
     }
@@ -166,7 +162,7 @@ function response(obj) {
                     if (showName.length >= 20) {
                         showName = showName.substr(0,17) + '...';
                     }
-                  html += "<div role='episode-info' id='"+id+"' onclick=&#39;getModalPopUp(&#34;"+hoverText+"&#34;);&#39; style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                  html += "<div role='episode-info' id='"+id+"' onclick='getModalPopUp(&#34;"+hoverText+"&#34;);'; style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
