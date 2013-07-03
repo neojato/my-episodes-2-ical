@@ -59,12 +59,13 @@ function responseSummary(obj) {
    }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
+   id = id[0].trim();
    id = id[0].replace(' season ', '-');
    id = id[0].replace(' episode ', '-');
    
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
-   sumDiv.id = 'ep-'+id[0].trim();
+   sumDiv.id = 'ep-'+id[0];
    sumDiv.innerHTML = summary;
    sumFeed.appendChild(sumDiv);
    
@@ -75,29 +76,29 @@ function responseSummary(obj) {
 function response(obj) {
     // obj.data contains the feed data
     var feed = obj.data;
-    var contentDiv = document.getElementById('content_div');
+    // var contentDiv = document.getElementById('content_div');
     var html = "";
     
     // create content feed container
-    var contFeed = document.createElement('div');
+    /*var contFeed = document.createElement('div');
     contFeed.id = 'content_feed';
     contFeed.setAttribute('style','overflow-x:hidden;overflow-y:auto;width:100%;height:280px;');
-    contentDiv.appendChild(contFeed);
+    contentDiv.appendChild(contFeed);*/
     
     // create episode summary container
-    var sumFeed = document.createElement('div');
+    /*var sumFeed = document.createElement('div');
     sumFeed.id = 'summary_feed';
     sumFeed.setAttribute('style','display: none;');
-    contentDiv.appendChild(sumFeed);
+    contentDiv.appendChild(sumFeed);*/
     
-    // document.getElementById('content_div').innerHTML = "<div id='summary_feed' style='display: none;'></div>";
+    document.getElementById('content_div').innerHTML = "<div id='summary_feed' style='display: none;'></div>";
     
     // access the data for a given entry
     if (typeof(feed) !== 'undefined' && feed.Entry) {
         var counter = 0;
         var dateHeader = '';
         var showHeader = '';
-        // html += "<div id='content_feed' style='overflow-x:hidden;overflow-y:auto;width:100%;height:280px;'>";
+        html += "<div id='content_feed' style='overflow-x:hidden;overflow-y:auto;width:100%;height:280px;'>";
         for(var i = 0; i < feed.Entry.length; i++) {
             if (feed.Entry[i].Title != 'No Episodes') {
                 var id = '';
@@ -277,7 +278,7 @@ function response(obj) {
             html += "<br/><br/>Go to <a href='http://www.myepisodes.com' target='_blank'>MyEpisodes.com</a> to add more TV shows.</div><br/><br/>";
         }
         
-        html += "</div>"; // </div>
+        html += "</div></div>";
         
         /* action bar */
         html += getActionButton();
@@ -308,9 +309,9 @@ function response(obj) {
         html += "<input type='button' onclick='updateFeed();' value='Show Feed'>";
     }
     
-    var contentFeed= document.getElementById('content_feed');
-    contentFeed.innerHtml = html;
-    // document.getElementById('content_div').innerHTML += html;
+    /*var contentFeed= document.getElementById('content_feed');
+    contentFeed.innerHtml = html;*/
+    document.getElementById('content_div').innerHTML += html;
     gadgets.window.adjustHeight();
 };
 
