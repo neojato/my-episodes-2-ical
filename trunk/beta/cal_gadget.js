@@ -57,9 +57,6 @@ function responseSummary(obj) {
            summary = 'n/a';
         }
    }
-   else {
-       alert(summary);
-   }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
    var html = '<div id="ep-'+id[0].trim()+'">'+summary+'</div>';
@@ -159,7 +156,7 @@ function response(obj) {
                         showName = showName.substr(0,17) + '...';
                     }
                     summaryText = hoverText.replace(/\n/g, "<br/>");
-                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage(&#34;"+hoverText+"&#34;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage(&#34;"+summaryText+"&#34;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
