@@ -59,10 +59,8 @@ function responseSummary(obj) {
    }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
-   id = id[0].trim();
-   alert(id[0]);
-   alert(id[1]);
-   alert(id[0].trim());
+   id = id[0].trim()+'';
+   alert(id);
    // id = id[0].replace(' season ', '-');
    // id = id[0].replace(' episode ', '-');
    
