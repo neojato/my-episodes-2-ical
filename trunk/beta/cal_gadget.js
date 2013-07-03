@@ -56,9 +56,9 @@ function responseSummary(obj) {
         if (summary.substr(0, 9) == '<a title=' || summary.match(/Click here to add a summary/g) == 'Click here to add a summary') {
            summary = 'n/a';
         }
-        else {
-           alert(summary);
-        }
+   }
+   else {
+       alert(summary);
    }
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
@@ -158,7 +158,8 @@ function response(obj) {
                     if (showName.length >= 20) {
                         showName = showName.substr(0,17) + '...';
                     }
-                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage("+hoverText+");' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                    summaryText = hoverText.replace(/\n/g, "<br/>");
+                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage(&#34;"+hoverText+"&#34;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
