@@ -149,7 +149,7 @@ function response(obj) {
                 if (episodeId[1].substr(0, 1) == '0') {
                     episodeId = episodeId[1].substr(1);
                 }
-                var summaryId = showName+'-'+seasonId[0]+'-'+episodeId[1];
+                var summaryId = showName+'-'+seasonId[0]+'-'+episodeId[0]+'-'+episodeId[1]+'-'+episodeId;
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
                 hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime;
