@@ -65,7 +65,7 @@ function responseSummary(obj) {
    
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
-   sumDiv.id = 'ep-'+id[0];
+   sumDiv.id = 'ep-'+id;
    sumDiv.innerHTML = summary;
    sumFeed.appendChild(sumDiv);
    
@@ -142,14 +142,16 @@ function response(obj) {
                 showTitle = showTitle.replace(/^\s+|\s+$/g, ""); // remove extra spaces (ie. trim)
                 
                 var seasonId = episode.split('x', 1);
-                if (seasonId[0].substr(0, 1) == '0') {
+                if (seasonId[0].substr(0, 1) == '0')
                     seasonId = seasonId[0].substr(1);
-                }
+                seasonId = seasonId[0].trim()+'';
+                
                 var episodeId = episode.split('x', 2);
-                if (episodeId[1].substr(0, 1) == '0') {
+                if (episodeId[1].substr(0, 1) == '0')
                     episodeId = episodeId[1].substr(1);
-                }
-                var summaryId = showName+'-'+seasonId[0]+'-'+episodeId[0]+'-'+episodeId[1]+'-'+episodeId;
+                episodeId= episodeId[0].trim()+'';
+                
+                var summaryId = showName+'-'+seasonId+'-'+episodeId;
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
                 hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime;
