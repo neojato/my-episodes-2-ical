@@ -144,11 +144,15 @@ function response(obj) {
                 var seasonId = episode.split('x', 1);
                 if (seasonId[0].substr(0, 1) == '0')
                     seasonId = seasonId[0].substr(1);
+                else
+                    seasonId = seasonId[0];
                 seasonId = seasonId[0].trim()+'';
                 
                 var episodeId = episode.split('x', 2);
                 if (episodeId[1].substr(0, 1) == '0')
                     episodeId = episodeId[1].substr(1);
+                else
+                    episodeId = episodeId[1];
                 episodeId= episodeId[0].trim()+'';
                 
                 var summaryId = showName+'-'+seasonId+'-'+episodeId;
