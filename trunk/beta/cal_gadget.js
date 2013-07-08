@@ -48,12 +48,12 @@ function responseSummary(obj) {
    summary = summary.split("<div class='show_synopsis'>", 2);
    summary = summary[1].split('<br>', 1);
    summary = summary[0].trim();
-   if (summary.substr(0, 6) == '</div>') {
+   if (summary.substr(0, 6) == '</div>' || summary.substr(0, 8) == '<a href=') {
         var summary = obj.text;
         summary = summary.split("<div class='left padding_bottom_10'>", 2);
         summary = summary[1].split('<br>', 1);
         summary = summary[0].trim();
-        if (summary.substr(0, 9) == '<a title=' || summary.match(/Click here to add a summary/g) == 'Click here to add a summary') {
+        if (summary.substr(0, 8) == '<a href=' || summary.substr(0, 9) == '<img src=') {
            summary = 'n/a';
         }
    }
@@ -68,9 +68,6 @@ function responseSummary(obj) {
    sumDiv.id = 'ep-'+id;
    sumDiv.innerHTML = summary;
    sumFeed.appendChild(sumDiv);
-   
-   // var html = '<div id="ep-'+id[0].trim()+'">'+summary+'</div>';
-   // document.getElementById('summary_feed').innerHTML += html;
 };
  
 function response(obj) {
@@ -152,14 +149,12 @@ function response(obj) {
                         seasonId = seasonId[0].substr(1);
                     else
                         seasonId = seasonId[0];
-                    // seasonId = seasonId[0].trim()+'';
                     
                     var episodeId = episode.split('x', 2);
                     if (episodeId[1].substr(0, 1) == '0')
                         episodeId = episodeId[1].substr(1);
                     else
                         episodeId = episodeId[1];
-                    // episodeId= episodeId[0].trim()+'';
                     
                     var summaryId = showName+'-'+seasonId+'-'+episodeId;
                     
@@ -324,7 +319,8 @@ function response(obj) {
 };
 
 function getSummaryMessage(summaryId) {
-    msg.createDismissibleMessage(getSummary(summaryId));
+    // msg.createDismissibleMessage(getSummary(summaryId));
+    alert(getSummary(summaryId));
 };
 
 /*function getModalPopUp(divText) {
