@@ -114,9 +114,6 @@ function response(obj) {
                 var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
                 var episode = modTitle.match(/\d{2}x\d{2}/g)+''; // finds episode number.
                 
-                // get episode summary info for later
-                getSummaryHTML(link);
-                
                 airTime = airTime.toString();
                 airTime = new Date( showDate.getFullYear(), showDate.getMonth(), showDate.getDate(), airTime.substr(0,2), airTime.substr(3) );
 
@@ -140,28 +137,33 @@ function response(obj) {
                 showTitle = showTitle.replace(/\'/g, "&#39;"); // escape html single qoute
                 showTitle = showTitle.replace(/\"/g, "&#34;"); // escape html double qoute
                 showTitle = showTitle.replace(/^\s+|\s+$/g, ""); // remove extra spaces (ie. trim)
-                
-                var seasonId = episode.split('x', 1);
-                if (seasonId[0].substr(0, 1) == '0')
-                    seasonId = seasonId[0].substr(1);
-                else
-                    seasonId = seasonId[0];
-                seasonId = seasonId[0].trim()+'';
-                
-                var episodeId = episode.split('x', 2);
-                if (episodeId[1].substr(0, 1) == '0')
-                    episodeId = episodeId[1].substr(1);
-                else
-                    episodeId = episodeId[1];
-                episodeId= episodeId[0].trim()+'';
-                
-                var summaryId = showName+'-'+seasonId+'-'+episodeId;
 
                 var hoverText = "Show: "+showName+"\nEpisode: "+showTitle+"&nbsp;(" + episode + ")";
                 hoverText += "\nAir Date: "+airDate+"\nAir Time: "+showTime;
 
                 // today's and future shows
                 if (showDate.getTime() >= today.getTime() && prefs.getString('feed') == 'mylist') {
+                    
+                    // get episode summary info for later
+                    getSummaryHTML(link);
+                    
+                    var seasonId = episode.split('x', 1);
+                    if (seasonId[0].substr(0, 1) == '0')
+                        seasonId = seasonId[0].substr(1);
+                    else
+                        seasonId = seasonId[0];
+                    // seasonId = seasonId[0].trim()+'';
+                    
+                    var episodeId = episode.split('x', 2);
+                    if (episodeId[1].substr(0, 1) == '0')
+                        episodeId = episodeId[1].substr(1);
+                    else
+                        episodeId = episodeId[1];
+                    // episodeId= episodeId[0].trim()+'';
+                    
+                    var summaryId = showName+'-'+seasonId+'-'+episodeId;
+                    
+                    
                     if (dateHeader != currentHeader) {
                         if(counter != 0) {
                             html += "</div>";
