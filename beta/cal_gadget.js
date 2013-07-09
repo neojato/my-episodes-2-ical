@@ -319,7 +319,6 @@ function response(obj) {
 };
 
 function getSummaryMessage(summaryId) {
-    // msg.createDismissibleMessage(getSummary(summaryId));
     alert(getSummary(summaryId));
 };
 
@@ -419,7 +418,9 @@ function updateFeed() {
 };
 
 function getSummary(id) {
-    var summary = 'ep-'+id+'<br/>';
+  var title = id.split('-')
+  var heading = title[0]+' s'+title[1]+'e'+title[2];
+  var summary = heading+'\n\nSummary:\n';
     if (document.getElementById('ep-'+id)) {
         summary += document.getElementById('ep-'+id).innerHTML;
     }
