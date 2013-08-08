@@ -549,7 +549,6 @@ function addStyles() {
 var now = new Date();
 var till1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 0, 0, 0) - now;
 if (till1 < 0) till1 += 86400000;
-alert(till1);
-// setTimeout(getFeed(), till1);
+setTimeout(function(){getFeed();}, till1);
 
 gadgets.util.registerOnLoadHandler(getFeed);
