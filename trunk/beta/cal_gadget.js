@@ -545,4 +545,10 @@ function addStyles() {
     return el;
 };
 
+// auto-refresh at 1am if left open over night
+var now = new Date();
+var till1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 0, 0, 0) - now;
+if (till1 < 0) till1 += 86400000;
+setTimeout(getFeed(), till1);
+
 gadgets.util.registerOnLoadHandler(getFeed);
