@@ -14,6 +14,12 @@ oScript.type = 'text/javascript';
 oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
 oHead.appendChild(oScript);*/
 
+var oHead = document.getElementsByTagName('head')[0];
+var oMeta = document.createElement('meta');
+oMeta.name = 'google-translate-customization';
+oMeta.content = 'c2aa13a2ad95b2cc-4cbf363add403ff6-g2044eed00c403782-3f';
+oHead.appendChild(oScript);
+
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
 if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
     addStyles();
