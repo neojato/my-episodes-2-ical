@@ -12,7 +12,7 @@ var oHead = document.getElementsByTagName('head')[0];
 var oMeta = document.createElement('meta');
 oMeta.name = 'google-translate-customization';
 oMeta.content = 'c2aa13a2ad95b2cc-4cbf363add403ff6-g2044eed00c403782-3f';
-oHead.appendChild(oScript);
+oHead.appendChild(oMeta);
 
 document.getElementById('content_div').innerHTML = "<div id='content_feed'>Loading...</div>";
 
