@@ -1,6 +1,6 @@
 =Version Change Log=
 
-==Version 0.8.5b - Beta==
+==0.8.5b - Beta==
 *Release Date:* _TBD_<br>
 *Start Date:* 06.16.2013
   * Minor code clean-up
