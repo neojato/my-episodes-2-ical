@@ -1,1 +1,21 @@
+=Version Change Log=
+
+==Version 0.8.5b - Beta==
+*Release Date:* _TBD_<br>
+*Start Date:* 06.16.2013
+  * Minor code clean-up
+  * Moved to SVN from Git repository
+    ** Driven by the 'Downloads' tab being removed from Google Code in the near future
+    ** Added benifit to edit/update code via broswer
+  * Upgraded to use the Message API for Gadgets
+  * Capture Episode Summary (when available)
+    ** When summary is not avaiable yet, N/A is returned
+  * Enhanced Google Analytics
+    ** Better ability to see how gadget is being used
+  * Gadget Auto-Refresh
+    ** For when Google Calendar tab is left open over night
+----
+==Previous Versions==
 (coming soon)
+<wiki:comment>
+</wiki:comment>
