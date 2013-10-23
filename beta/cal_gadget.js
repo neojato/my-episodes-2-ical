@@ -49,8 +49,8 @@ function getShowImage(link) {
 }
 
 function responseImage(obj) {
-   console.log(obj.data);
-   return obj.data.Poster;
+   if(obj.data)
+       return obj.data.Poster;
 }
 
 function getSummaryHTML(link) {
@@ -85,7 +85,7 @@ function responseSummary(obj) {
    id = id.replace(' episode ', '-');
    
    var showName = id.split('-');
-   var imageSrc = getShowImage('http://www.omdbapi.com/?i=&t='+showName[0].replace(' ', '%20'));
+   var imageSrc = getShowImage('http://www.omdbapi.com/?i=&t='+showName[0].replace(/\s/g, '%20'));
    
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
