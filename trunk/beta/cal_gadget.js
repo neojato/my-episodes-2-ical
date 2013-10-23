@@ -61,18 +61,22 @@ function getSummaryHTML(link) {
 function responseSummary(obj) {
    var summary = obj.text,
        id = summary.split('<meta name="description" content="', 2);
+   
+   // find summary
    summary = summary.split("<div class='show_synopsis'>", 2);
    summary = summary[1].split('<br>', 1);
    summary = summary[0].trim();
    if (summary.substr(0, 6) == '</div>' || summary.substr(0, 8) == '<a href=') {
-        var summary = obj.text; // reset
-        summary = summary.split("<div class='left padding_bottom_10'>", 2);
+        summary = obj.text; // reset
+        summary = summary.split("<div class='left padding_bottom_10' style='vertical-align: top;'>", 2);
         summary = summary[1].split('<br>', 1);
         summary = summary[0].trim();
         if (summary.substr(0, 8) == '<a href=' || summary.substr(0, 9) == '<img src=') {
-           summary = 'n/a'; // set default when no summary found
+            summary = 'n/a'; // still no summary found, set default
         }
    }
+   
+   // create div id
    id = id[1].split(' | ', 2);
    id = id[1].split(' " />', 1);
    id = id[0].trim()+'';
