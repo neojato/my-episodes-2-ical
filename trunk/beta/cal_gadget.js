@@ -1,8 +1,8 @@
 // get userprefs
-var ga = new _IG_GA('UA-7344999-15');
-var prefs = new gadgets.Prefs();
-var msg = new gadgets.MiniMessage();
-var version = '0.8.5b';
+var ga = new _IG_GA('UA-7344999-15'),
+    prefs = new gadgets.Prefs(),
+    msg = new gadgets.MiniMessage(),
+    version = '0.8.5b';
 
 // update gadget message
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
@@ -14,8 +14,8 @@ oScript.type = 'text/javascript';
 oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
 oHead.appendChild(oScript);*/
 
-var oHead = document.getElementsByTagName('head')[0];
-var oMeta = document.createElement('meta');
+var oHead = document.getElementsByTagName('head')[0],
+    oMeta = document.createElement('meta');
 oMeta.name = 'google-translate-customization';
 oMeta.content = 'c2aa13a2ad95b2cc-4cbf363add403ff6-g2044eed00c403782-3f';
 oHead.appendChild(oMeta);
@@ -42,6 +42,16 @@ function getFeed() {
     }
 };
 
+function getShowImage(link) {
+   var params = {};
+   params[gadgets.io.requestParameters.CONTENT_TYPE] = gadgets.io.ContentTyle.JSON;
+   gadgets.io.makeRequest(link, responseImage, params);
+}
+
+function responseImage(obj) {
+   return obj.Poster;
+}
+
 function getSummaryHTML(link) {
    var params = {};  
    params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
@@ -49,18 +59,18 @@ function getSummaryHTML(link) {
 };
 
 function responseSummary(obj) {
-   var summary = obj.text;
-   var id = summary.split('<meta name="description" content="', 2);
+   var summary = obj.text,
+       id = summary.split('<meta name="description" content="', 2);
    summary = summary.split("<div class='show_synopsis'>", 2);
    summary = summary[1].split('<br>', 1);
    summary = summary[0].trim();
    if (summary.substr(0, 6) == '</div>' || summary.substr(0, 8) == '<a href=') {
-        var summary = obj.text;
+        summary = obj.text; // reset
         summary = summary.split("<div class='left padding_bottom_10'>", 2);
         summary = summary[1].split('<br>', 1);
         summary = summary[0].trim();
         if (summary.substr(0, 8) == '<a href=' || summary.substr(0, 9) == '<img src=') {
-           summary = 'n/a';
+           summary = 'n/a'; // set default when no summary found
         }
    }
    id = id[1].split(' | ', 2);
@@ -69,17 +79,20 @@ function responseSummary(obj) {
    id = id.replace(' season ', '-');
    id = id.replace(' episode ', '-');
    
+   var showName = id.split('-');
+   var imageSrc = getShowImage('http://www.omdbapi.com/?i=&t='+showName[0].replace(' ', '%20'));
+   
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
    sumDiv.id = 'ep-'+id;
-   sumDiv.innerHTML = summary;
+   sumDiv.innerHTML = summary+'\n\n'+imageSrc;
    sumFeed.appendChild(sumDiv);
 };
  
 function response(obj) {
     // obj.data contains the feed data
     var feed = obj.data;
-    // var contentDiv = document.getElementById('content_div');
+    var contentDiv = document.getElementById('content_div');
     var html = "";
     
     // create content feed container
@@ -89,12 +102,12 @@ function response(obj) {
     contentDiv.appendChild(contFeed);*/
     
     // create episode summary container
-    /*var sumFeed = document.createElement('div');
+    var sumFeed = document.createElement('div');
     sumFeed.id = 'summary_feed';
     sumFeed.setAttribute('style','display: none;');
-    contentDiv.appendChild(sumFeed);*/
+    contentDiv.appendChild(sumFeed);
     
-    document.getElementById('content_div').innerHTML = "<div id='summary_feed' style='display: none;'></div>";
+    //document.getElementById('content_div').innerHTML = "<div id='summary_feed' style='display: none;'></div>";
     
     // access the data for a given entry
     if (typeof(feed) !== 'undefined' && feed.Entry) {
@@ -146,9 +159,7 @@ function response(obj) {
 
                 // today's and future shows
                 if (showDate.getTime() >= today.getTime() && prefs.getString('feed') == 'mylist') {
-                    
-                    // get episode summary info for later
-                    getSummaryHTML(link);
+                    getSummaryHTML(link); // get episode summary info for later
                     
                     var seasonId = episode.split('x', 1);
                     if (seasonId[0].substr(0, 1) == '0')
@@ -358,9 +369,9 @@ function viewFeedXML() {
 };
 
 function showOption() {
-    var e = document.getElementById('cg_menu');
-    var d = document.getElementById('feedButton');
-    var a = document.getElementById('arrow');
+    var e = document.getElementById('cg_menu'),
+        d = document.getElementById('feedButton'),
+        a = document.getElementById('arrow');
 
     if (e.style.display == 'none') {
         e.style.display = 'block';
@@ -392,7 +403,7 @@ function selectOption() {
 };
 
 function submitOption(feedType) {
-    html = "<form name='calendarPrefs'><input name='feed' type='hidden' value='" + feedType + "'/></form>";
+    var html = "<form name='calendarPrefs'><input name='feed' type='hidden' value='" + feedType + "'/></form>";
     document.getElementById('content_div').innerHTML = html;
     updateFeed();
 };
@@ -424,9 +435,9 @@ function updateFeed() {
 };
 
 function getSummary(id) {
-  var title = id.split('-')
-  var heading = title[0]+' s'+title[1]+'e'+title[2];
-  var summary = heading+'\n\nSummary:\n';
+  var title = id.split('-'),
+      heading = title[0]+' s'+title[1]+'e'+title[2],
+      summary = heading+'\n\nSummary:\n';
     if (document.getElementById('ep-'+id)) {
         summary += document.getElementById('ep-'+id).innerHTML;
     }
@@ -434,9 +445,9 @@ function getSummary(id) {
 };
 
 function addEvent(showName, showTitle, showTime, summaryId) {
-    var showTime = new Date(showTime);
-    var endTime = new Date(showTime);
-    var summary = getSummary(summaryId);
+    var showTime = new Date(showTime),
+        endTime = new Date(showTime),
+        summary = getSummary(summaryId);
     
     // convert to string
     startYear = showTime.getFullYear().toString();
@@ -470,8 +481,8 @@ function formatMonth(date) {
 };
 
 function getMonthInt(month) {
-    var monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    var monthInt = 0;
+    var monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        monthInt = 0;
 
     for (var i=0;i < 12; i++) {
         var temp=monthShort[i];
@@ -485,10 +496,10 @@ function getMonthInt(month) {
 };
 
 function formatTime(showTime) {
-    var time = showTime.toString();
-    var period = '';
-    var hour = parseInt(time.substr(0,2));
-    var minutes = time.substr(3);
+    var time = showTime.toString(),
+        period = '',
+        hour = parseInt(time.substr(0,2)),
+        minutes = time.substr(3),
 
     if (hour > 12) {
         hour -= 12;
@@ -505,8 +516,8 @@ function formatTime(showTime) {
         period = "a.m.";
     }
 
-    // javscript is picky about numbers vs strings
-    hour += '';
+    // change hour back to a string
+    hour = hour.toString();
 
     if (parseInt(hour.substr(0,1)) != 0) {
         return ((hour<=9) ? "0" + hour : hour) + ":" + minutes + " " + period;
