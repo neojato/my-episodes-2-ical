@@ -44,7 +44,7 @@ function getFeed() {
 
 function getShowImage(link) {
    var params = {};
-   params[gadgets.io.requestParameters.CONTENT_TYPE] = gadgets.io.ContentTyle.JSON;
+   params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
    gadgets.io.makeRequest(link, responseImage, params);
 }
 
@@ -65,7 +65,7 @@ function responseSummary(obj) {
    summary = summary[1].split('<br>', 1);
    summary = summary[0].trim();
    if (summary.substr(0, 6) == '</div>' || summary.substr(0, 8) == '<a href=') {
-        summary = obj.text; // reset
+        var summary = obj.text; // reset
         summary = summary.split("<div class='left padding_bottom_10'>", 2);
         summary = summary[1].split('<br>', 1);
         summary = summary[0].trim();
@@ -90,16 +90,9 @@ function responseSummary(obj) {
 };
  
 function response(obj) {
-    // obj.data contains the feed data
-    var feed = obj.data;
+    var feed = obj.data; // contains the feed data
     var contentDiv = document.getElementById('content_div');
     var html = "";
-    
-    // create content feed container
-    /*var contFeed = document.createElement('div');
-    contFeed.id = 'content_feed';
-    contFeed.setAttribute('style','overflow-x:hidden;overflow-y:auto;width:100%;height:280px;');
-    contentDiv.appendChild(contFeed);*/
     
     // create episode summary container
     var sumFeed = document.createElement('div');
@@ -107,7 +100,11 @@ function response(obj) {
     sumFeed.setAttribute('style','display: none;');
     contentDiv.appendChild(sumFeed);
     
-    //document.getElementById('content_div').innerHTML = "<div id='summary_feed' style='display: none;'></div>";
+    // create content feed container
+    /*var contFeed = document.createElement('div');
+    contFeed.id = 'content_feed';
+    contFeed.setAttribute('style','overflow-x:hidden;overflow-y:auto;width:100%;height:280px;');
+    contentDiv.appendChild(contFeed);*/
     
     // access the data for a given entry
     if (typeof(feed) !== 'undefined' && feed.Entry) {
