@@ -49,8 +49,8 @@ function getShowImage(link) {
 }
 
 function responseImage(obj) {
-   //return obj.Poster;
-   console.log(obj);
+   if(obj.data.Response)
+        return obj.data.Poster;
 }
 
 function getSummaryHTML(link) {
