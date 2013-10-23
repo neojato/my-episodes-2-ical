@@ -49,8 +49,15 @@ function getShowImage(link) {
 }
 
 function responseImage(obj) {
-   if(obj.data)
-       return obj.data.Poster;
+  if(obj.data) {
+      var sumFeed = document.getElementById('summary_feed');
+      if(!document.getElementById('img-'+obj.data.Title)) {
+          var imgDiv = document.createElement('div');
+          imgDiv.id = 'img-'+obj.data.Title;
+          imgDiv.innerHTML = obj.data.Poster;
+          sumFeed.appendChild(imgDiv);
+      }
+  }
 }
 
 function getSummaryHTML(link) {
@@ -84,14 +91,16 @@ function responseSummary(obj) {
    id = id.replace(' season ', '-');
    id = id.replace(' episode ', '-');
    
-   var showName = id.split('-');
-   var imageSrc = getShowImage('http://www.omdbapi.com/?i=&t='+showName[0].replace(/\s/g, '%20'));
-   
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
    sumDiv.id = 'ep-'+id;
-   sumDiv.innerHTML = summary+'\n\n'+imageSrc;
+   sumDiv.innerHTML = summary;
    sumFeed.appendChild(sumDiv);
+   
+   var showName = id.split('-');
+   getShowImage('http://www.omdbapi.com/?i=&t='+showName[0].replace(/\s/g, '%20'));
+   if(document.getElementById('img-'+showName[0]))
+       sumDiv.innerHTML += '\n\n'+document.getElementById('img-'+showName[0]).innerHTML;
 };
  
 function response(obj) {
