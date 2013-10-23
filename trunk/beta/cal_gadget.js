@@ -499,7 +499,7 @@ function formatTime(showTime) {
     var time = showTime.toString(),
         period = '',
         hour = parseInt(time.substr(0,2)),
-        minutes = time.substr(3),
+        minutes = time.substr(3);
 
     if (hour > 12) {
         hour -= 12;
