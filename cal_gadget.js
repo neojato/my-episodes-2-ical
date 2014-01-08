@@ -216,9 +216,11 @@ function response(obj) {
         html += getMenu();
     }
     else if (prefs.getString('uid') != '' && prefs.getString('pwdmd5') != '') {
+        html += "<div id='feed_error' style='overflow-x:hidden;overflow-y:auto;width:100%;height:280px;'>";
         html += "There seems to be a problem with your feed!<br/><br/>";
         html += "Either you haven't added any shows yet or none of your shows are currently airing.<br/><br/>";
         html += "Go to <a href='http://www.myepisodes.com' target='_blank'>MyEpisodes.com</a> to add more shows.";
+        html += "</div>
 
         /* action bar */
         html += getActionButton();
