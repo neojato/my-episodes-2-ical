@@ -220,7 +220,7 @@ function response(obj) {
         html += "There seems to be a problem with your feed!<br/><br/>";
         html += "Either you haven't added any shows yet or none of your shows are currently airing.<br/><br/>";
         html += "Go to <a href='http://www.myepisodes.com' target='_blank'>MyEpisodes.com</a> to add more shows.";
-        html += "</div>
+        html += "</div>";
 
         /* action bar */
         html += getActionButton();
