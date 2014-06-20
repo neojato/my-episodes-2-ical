@@ -138,9 +138,14 @@ function response(obj) {
                 var airTime = description.match(/\d{2}:\d{2}/g); // finds air time (match ex. 18:00)
                 var showDate = new Date( airDate.substr(7), getMonthInt(airDate.substr(3,3)), airDate.substr(0,2) );
                 var currentHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
-                var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
                 var episode = modTitle.match(/\d{2}x\d{2}/g)+''; // finds episode number.
                 
+                // fix for TVRage.com omitting AirTime
+                if (!airTime) {
+                    airTime = 18:00; // set a default aitTime
+                }
+                
+                var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
                 airTime = airTime.toString();
                 airTime = new Date( showDate.getFullYear(), showDate.getMonth(), showDate.getDate(), airTime.substr(0,2), airTime.substr(3) );
 
@@ -576,9 +581,9 @@ function addStyles() {
 };
 
 // auto-refresh at 1am if left open over night
-var now = new Date();
+/* var now = new Date();
 var till1 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 1, 0, 0, 0) - now;
 if (till1 < 0) till1 += 86400000;
-setTimeout(function(){getFeed();}, till1);
+setTimeout(function(){getFeed();}, till1); */
 
 gadgets.util.registerOnLoadHandler(getFeed);
