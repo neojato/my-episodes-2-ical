@@ -1,7 +1,7 @@
 // get userprefs
 var ga = new _IG_GA('UA-7344999-15');
 var prefs = new gadgets.Prefs();
-var version = '0.8.4';
+var version = '0.8.4.1';
 
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
 if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
@@ -55,9 +55,14 @@ function response(obj) {
                 var airTime = description.match(/\d{2}:\d{2}/g); // finds air time (match ex. 18:00)
                 var showDate = new Date( airDate.substr(7), getMonthInt(airDate.substr(3,3)), airDate.substr(0,2) );
                 var currentHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
-                var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
                 var episode = modTitle.match(/\d{2}x\d{2}/g)+''; // finds episode number.
-
+                
+                // fix for TVRage.com omitting 'AirTime' on some shows
+                if (!airTime) {
+                    airTime = '18:00'; // set a default airTime for now
+                }
+                
+                var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
                 airTime = airTime.toString();
                 airTime = new Date( showDate.getFullYear(), showDate.getMonth(), showDate.getDate(), airTime.substr(0,2), airTime.substr(3) );
 
