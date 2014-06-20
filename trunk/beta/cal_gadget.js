@@ -142,7 +142,7 @@ function response(obj) {
                 
                 // fix for TVRage.com omitting AirTime
                 if (!airTime) {
-                    airTime = 18:00; // set a default aitTime
+                    airTime = '18:00'; // set a default aitTime
                 }
                 
                 var showTime = formatTime( airTime ); // 12-hour format time (ex. 06:00 p.m.)
