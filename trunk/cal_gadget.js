@@ -1,5 +1,5 @@
 // get userprefs
-var ga = new _IG_GA('UA-7344999-15');
+// var ga = new _IG_GA('UA-7344999-15');
 var prefs = new gadgets.Prefs();
 var version = '0.8.4.1';
 
@@ -25,7 +25,8 @@ function getFeed() {
         params[gadgets.io.RequestParameters.GET_SUMMARIES] = true;
         params[gadgets.io.RequestParameters.NUM_ENTRIES] = 200;
         document.getElementById('content_div').innerHTML = "<div id='content_feed'>Retrieving Feed...</div>";
-        ga.reportPageview('/view/my-episodes-2-ical/'+prefs.getString('feed'));
+        //ga.reportPageview('/view/my-episodes-2-ical/'+prefs.getString('feed'));
+        ga('send', 'pageview', '/view/my-episodes-2-ical/'+prefs.getString('feed'));
         gadgets.io.makeRequest(url, response, params);
     }
     else {
@@ -270,7 +271,8 @@ function getMenu() {
 };
 
 function viewFeedXML() {
-   ga.reportEvent("my-episodes-2-ical Gadget", "View Feed XML", prefs.getString('feed'));
+   //ga.reportEvent("my-episodes-2-ical Gadget", "View Feed XML", prefs.getString('feed'));
+   ga('send', 'event', 'View Feed XML Button', 'click', prefs.getString('feed'));
    window.open('http://www.myepisodes.com/rss.php?feed='+prefs.getString('feed')+'&uid='+prefs.getString('uid')+'&pwdmd5='+prefs.getString('pwdmd5'), '_blank');
 };
 
@@ -328,7 +330,8 @@ function updateFeed() {
             }
             else if(name == "feed") {
                 prefs.set('feed', elements[i].value);
-                ga.reportEvent("my-episodes-2-ical Gadget", "Switch Feed", elements[i].value);
+                //ga.reportEvent("my-episodes-2-ical Gadget", "Switch Feed", elements[i].value);
+                ga('send', 'event', 'Switch Feed Button', 'click', elements[i].value);
             }
         }
         else {
@@ -366,7 +369,8 @@ function addEvent(showName, showTitle, showTime) {
         endTime : { year: endYear, month: endMonth, date: endDay, hour: endHour, minute: endMinute, second: 0 }
     };
     
-    ga.reportEvent("my-episodes-2-ical Gadget", "Add to calendar", showName +' '+showTitle);
+    //ga.reportEvent("my-episodes-2-ical Gadget", "Add to calendar", showName +' '+showTitle);
+    ga('send', 'event', 'Add to Calendar Button', 'click', showName +' '+showTitle);
     google.calendar.composeEvent(eventData);
 };
 
