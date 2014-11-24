@@ -1,7 +1,7 @@
 // get userprefs
 // var ga = new _IG_GA('UA-7344999-15');
 var prefs = new gadgets.Prefs();
-var version = '0.8.4.1';
+var version = '0.8.4.2';
 
 // IE & FF use strict standards for CSS (cross-content) and breaks the gadget styles
 if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || /Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
