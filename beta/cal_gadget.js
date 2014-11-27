@@ -1,8 +1,7 @@
 // get userprefs
-var ga = new _IG_GA('UA-7344999-15'),
-    prefs = new gadgets.Prefs(),
+var prefs = new gadgets.Prefs(),
     msg = new gadgets.MiniMessage(),
-    version = '0.8.5b';
+    version = '0.8.6b';
 
 // update gadget message
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
@@ -34,7 +33,7 @@ function getFeed() {
         params[gadgets.io.RequestParameters.GET_SUMMARIES] = true;
         params[gadgets.io.RequestParameters.NUM_ENTRIES] = 200;
         msg.createTimerMessage('Retrieving Feed...', 0.8);
-        ga.reportPageview('/view/my-episodes-2-ical-beta/'+prefs.getString('feed'));
+        ga('send', 'pageview', '/view/my-episodes-2-ical/'+prefs.getString('feed'));
         gadgets.io.makeRequest(url, response, params);
     }
     else {
@@ -382,7 +381,7 @@ function getMenu() {
 };
 
 function viewFeedXML() {
-   ga.reportEvent("my-episodes-2-ical-beta Gadget", "View Feed XML", prefs.getString('feed'));
+   ga('send', 'event', 'View Feed XML Button', 'click', prefs.getString('feed'));
    window.open('http://www.myepisodes.com/rss.php?feed='+prefs.getString('feed')+'&uid='+prefs.getString('uid')+'&pwdmd5='+prefs.getString('pwdmd5'), '_blank');
 };
 
@@ -440,7 +439,7 @@ function updateFeed() {
             }
             else if(name == "feed") {
                 prefs.set('feed', elements[i].value);
-                ga.reportEvent("my-episodes-2-ical-beta Gadget", "Switch Feed", elements[i].value);
+                ga('send', 'event', 'Switch Feed Button', 'click', elements[i].value);
             }
         }
         else {
@@ -489,7 +488,7 @@ function addEvent(showName, showTitle, showTime, summaryId) {
         endTime : { year: endYear, month: endMonth, date: endDay, hour: endHour, minute: endMinute, second: 0 }
     };
     
-    ga.reportEvent("my-episodes-2-ical-beta Gadget", "Add to calendar", showName +' '+showTitle);
+    ga('send', 'event', 'Add to Calendar Button', 'click', showName +' '+showTitle);
     google.calendar.composeEvent(eventData);
 };
 
