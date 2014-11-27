@@ -60,7 +60,7 @@ function responseImage(obj) {
 
 function getSummaryHTML(link) {
    var params = {};
-   link = link.replace('http:', '');
+   link = link.replace('http:', 'https:');
    params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
    gadgets.io.makeRequest(link, responseSummary, params);
 };
@@ -99,7 +99,7 @@ function responseSummary(obj) {
    sumFeed.appendChild(sumDiv);
    
    // http://www.omdbapi.com/?t=ancient+aliens&r=json
-   var imgLink = '//www.omdbapi.com/?t='+showName[0].replace(/\s/g, '+')+'&r=json';
+   var imgLink = 'http://www.omdbapi.com/?t='+showName[0].replace(/\s/g, '+')+'&r=json';
    console.log(imgLink);
    /*
    if (showName[0])
