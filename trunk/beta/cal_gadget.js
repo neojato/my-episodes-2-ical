@@ -60,7 +60,7 @@ function responseImage(obj) {
 
 function getSummaryHTML(link) {
    var params = {};
-   console.log('summary: '+link);
+   link = link.replace('http:', '');
    params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
    gadgets.io.makeRequest(link, responseSummary, params);
 };
@@ -90,8 +90,8 @@ function responseSummary(obj) {
    id = id[1].split(',', 2);
    id = id[0].replace('Watch ', '');
    showName = id.split(':', 2);
-   id = (id[0]+id[1]).replace(' ', '');
-   console.log('id '+id);
+   id = id.replace(/ /g, '');
+   
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
    sumDiv.id = 'ep-'+id;
@@ -99,7 +99,7 @@ function responseSummary(obj) {
    sumFeed.appendChild(sumDiv);
    
    // http://www.omdbapi.com/?t=ancient+aliens&r=json
-   var imgLink = 'http://www.omdbapi.com/?t='+showName[0].replace(/\s/g, '+')+'&r=json';
+   var imgLink = '//www.omdbapi.com/?t='+showName[0].replace(/\s/g, '+')+'&r=json';
    console.log(imgLink);
    /*
    if (showName[0])
