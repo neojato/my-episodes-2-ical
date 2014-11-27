@@ -72,12 +72,18 @@ function responseSummary(obj) {
  //console.log(obj.text);
    // find summary
    summaryA = summary.split("<div class='show_synopsis'>", 2);
-   summaryA = summaryA[1].split('<br>', 1);
+   summaryA = summaryA[1].split('</div>', 1);
+   if (summaryA[0])
+       summaryA = summaryA[0].split('<br>', 1);
    summaryA = summaryA[0].trim();
    console.log(summaryA);
    
    summaryB = summary.split("<div class='left padding_bottom_10' style='vertical-align: top;'>", 2);
-   summaryB = summaryB[1].split('</div>', 2);
+   summaryB = summaryB[0].split('</div>', 1);
+   if (summaryB[0].substr(0, 9) !== '<img src=')
+       summaryB = summaryB[0].split('<br>', 1);
+   else
+       summaryB = 'unknown';
    console.log(summaryB[0]);
    /*
    if (summary.substr(0, 6) == '</div>' || summary.substr(0, 8) == '<a href=') {
@@ -100,7 +106,7 @@ function responseSummary(obj) {
    */
    // create id for div
    id = id[1].split(',', 2);
-   id = id[0].replace('Watch', '');
+   id = id[0].replace(' Watch ', '');
    showName = id.split(':', 2);
    showName = showName[0];
    id = id.replace(':', '');
