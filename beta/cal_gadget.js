@@ -60,7 +60,6 @@ function responseImage(obj) {
 
 function getSummaryHTML(link) {
    var params = {};
-   link = link.replace('http:', 'https:');
    params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
    gadgets.io.makeRequest(link, responseSummary, params);
 };
@@ -95,9 +94,10 @@ function responseSummary(obj) {
    
    // create id for div
    id = id[1].split(',', 2);
-   id = id[0].replace('Watch ', '');
+   id = id[0].replace(' Watch ', '');
    showName = id.split(':', 2);
-   id = id.replace(/ /g, '');
+   //id = id.replace(/ /g, '');
+   id = showName[0]+'-'+showName[1].replace('Season ', '-').replace(' episode ', '-');
    
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
