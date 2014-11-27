@@ -97,7 +97,7 @@ function responseSummary(obj) {
    id = id[0].replace(' Watch ', '');
    showName = id.split(':', 2);
    //id = id.replace(/ /g, '');
-   id = showName[0]+'-'+showName[1].replace('Season ', '-').replace(' episode ', '-');
+   id = showName[0]+showName[1].replace('Season ', '-').replace(' episode ', '-');
    
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
