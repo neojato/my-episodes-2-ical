@@ -86,6 +86,13 @@ function responseSummary(obj) {
        summaryB = '';
    }
    
+   if (summaryA && summaryA !== '')
+       summary = summaryA;
+   else if (summaryB && summaryB !== '')
+       summary = summaryB;
+   else
+       summary = '';
+   
    // create id for div
    id = id[1].split(',', 2);
    id = id[0].replace('Watch ', '');
