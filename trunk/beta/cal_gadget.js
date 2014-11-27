@@ -35,8 +35,7 @@ function getFeed() {
         msg.createTimerMessage('Retrieving Feed...', 0.8);
         ga('send', 'pageview', '/view/my-episodes-2-ical/'+prefs.getString('feed'));
         gadgets.io.makeRequest(url, response, params);
-    }
-    else {
+    } else {
         gadgets.io.makeRequest(url, response);
     }
 };
@@ -97,7 +96,8 @@ function responseSummary(obj) {
    sumFeed.appendChild(sumDiv);
    
    var showName = id.split('-');
-   getShowImage('http://www.omdbapi.com/?i=&t='+showName[0].replace(/\s/g, '%20'));
+   // http://www.omdbapi.com/?t=ancient+aliens&r=json
+   getShowImage('http://www.omdbapi.com/?t='+showName[0].replace(/\s/g, '+')+'&r=json');
    if(document.getElementById('img-'+showName[0]))
        sumDiv.innerHTML += '\n\n'+document.getElementById('img-'+showName[0]).innerHTML;
 };
