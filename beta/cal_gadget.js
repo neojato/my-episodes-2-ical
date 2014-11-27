@@ -73,18 +73,20 @@ function responseSummary(obj) {
    // find summary
    summaryA = summary.split("<div class='show_synopsis'>", 2);
    summaryA = summaryA[1].split('</div>', 1);
-   if (summaryA[0])
+   if (summaryA)
        summaryA = summaryA[0].split('<br>', 1);
    summaryA = summaryA[0].trim();
    console.log(summaryA);
    
    summaryB = summary.split("<div class='left padding_bottom_10' style='vertical-align: top;'>", 2);
-   summaryB = summaryB[0].split('</div>', 1);
-   if (summaryB[0].substr(0, 9) !== '<img src=')
+   summaryB = summaryB[1].split('</div>', 1);
+   if (summaryB[0].substr(0, 9) !== '<img src=') {
        summaryB = summaryB[0].split('<br>', 1);
-   else
+       summaryB = summaryB[0].trim();
+   } else {
        summaryB = 'unknown';
-   console.log(summaryB[0]);
+   }
+   console.log(summaryB);
    /*
    if (summary.substr(0, 6) == '</div>' || summary.substr(0, 8) == '<a href=') {
         summary = obj.text; // reset
