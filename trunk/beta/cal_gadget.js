@@ -68,61 +68,38 @@ function getSummaryHTML(link) {
 function responseSummary(obj) {
    var summary = obj.text,
        id = summary.split('<meta name="description" content="', 2);
-   console.log('response summary');
- //console.log(obj.text);
-   // find summary
-   summaryA = summary.split("<div class='show_synopsis'>", 2);
+   
+   // test for summary in synopsis
+   var summaryA = summary.split("<div class='show_synopsis'>", 2);
    summaryA = summaryA[1].split('</div>', 1);
    if (summaryA)
        summaryA = summaryA[0].split('<br>', 1);
    summaryA = summaryA[0].trim();
-   console.log(summaryA);
    
-   summaryB = summary.split("<div class='left padding_bottom_10' style='vertical-align: top;'>", 2);
+   // test for summary in content
+   var summaryB = summary.split("<div class='left padding_bottom_10' style='vertical-align: top;'>", 2);
    summaryB = summaryB[1].split('</div>', 1);
    if (summaryB[0].substr(0, 9) !== '<img src=') {
        summaryB = summaryB[0].split('<br>', 1);
        summaryB = summaryB[0].trim();
    } else {
-       summaryB = 'unknown';
+       summaryB = '';
    }
-   console.log(summaryB);
-   /*
-   if (summary.substr(0, 6) == '</div>' || summary.substr(0, 8) == '<a href=') {
-        summary = obj.text; // reset
-        summary = summary.split("<div class='left padding_bottom_10' style='vertical-align: top;'>", 2);
-        summary = summary[1].split('<br>', 1);
-        summary = summary[0].trim();
-        if (summary.substr(0, 8) == '<a href=' || summary.substr(0, 9) == '<img src=') {
-            summary = 'n/a'; // still no summary found, set default
-        }
-   }
-   */
-   /*
-   // create div id
-   id = id[1].split(' | ', 2);
-   id = id[1].split(' " />', 1);
-   id = id[0].trim()+'';
-   id = id.replace(' season ', '-');
-   id = id.replace(' episode ', '-');
-   */
+   
    // create id for div
    id = id[1].split(',', 2);
-   id = id[0].replace(' Watch ', '');
+   id = id[0].replace('Watch ', '');
    showName = id.split(':', 2);
-   showName = showName[0];
-   id = id.replace(':', '');
-   id = id.replace('/\s/g', '');
-  console.log('id: '+id);
+   id = (id[0]+id[1]).replace(' ', '');
+   console.log('id '+id);
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
    sumDiv.id = 'ep-'+id;
    sumDiv.innerHTML = summary;
    sumFeed.appendChild(sumDiv);
    
-   //var showName = id.split('-');
    // http://www.omdbapi.com/?t=ancient+aliens&r=json
-   var imgLink = 'http://www.omdbapi.com/?t='+showName.replace(/\s/g, '+')+'&r=json';
+   var imgLink = 'http://www.omdbapi.com/?t='+showName[0].replace(/\s/g, '+')+'&r=json';
    console.log(imgLink);
    /*
    if (showName[0])
