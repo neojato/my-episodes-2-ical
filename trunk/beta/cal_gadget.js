@@ -469,6 +469,7 @@ function getSummary(id) {
   var title = id.split('-'),
       heading = title[0]+' s'+title[1]+'e'+title[2],
       summary = heading+'\n\nSummary:\n';
+  id = id.replace(/\([0-9]{4}\)/, '');
     console.log(title);
     console.log(heading);
     console.log('ep-'+id);
