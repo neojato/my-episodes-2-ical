@@ -102,7 +102,7 @@ function responseSummary(obj) {
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
    sumDiv.id = 'ep-'+id;
-   sumDiv.innerHTML = summary;
+   sumDiv.innerHTML = removeHTMLTags(summary);
    sumFeed.appendChild(sumDiv);
    
    // http://www.omdbapi.com/?t=ancient+aliens&r=json
@@ -557,6 +557,15 @@ function formatTime(showTime) {
         return hour + ":" + minutes + " " + period;
     }
 };
+
+function removeHTMLTags(desc){
+    var strDescription = desc;
+    strDescription = strDescription.replace(/&(lt|gt);/g, function (strMatch, p1){
+        return (p1 == "lt")? "<" : ">";
+		});
+    strDescription = strDescription.replace(/<\/?[^>]+(>|$)/g, "");
+    return strDescription;
+}
 
 function isValidMd5(pw) {
     var md5 = null;
