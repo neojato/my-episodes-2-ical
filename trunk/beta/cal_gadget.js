@@ -563,7 +563,8 @@ function removeHTMLTags(desc){
     strDescription = strDescription.replace(/&(lt|gt);/g, function (strMatch, p1){
         return (p1 == "lt")? "<" : ">";
 		});
-    strDescription = strDescription.replace(/<\/?[^>]+(>|$)/g, "");
+    strDescription = strDescription.replace(/<\/?[^>]+(>|$)/g, " ");
+    strDescription = strDescription.replace(/&amp;/g, "&");
     return strDescription;
 }
 
