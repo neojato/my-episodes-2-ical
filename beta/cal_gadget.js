@@ -202,7 +202,8 @@ function response(obj) {
                     else
                         episodeId = episodeId[1];
                     
-                    var summaryId = showName+'-'+seasonId+'-'+episodeId;
+                    var divName = showName.split(' (', 2);
+                    var summaryId = divName[0]+'-'+seasonId+'-'+episodeId;
                     
                     
                     if (dateHeader != currentHeader) {
