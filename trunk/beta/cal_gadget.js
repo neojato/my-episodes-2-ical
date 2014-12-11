@@ -6,6 +6,13 @@ var prefs = new gadgets.Prefs(),
 // update gadget message
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
 
+// load the Popup Library
+var oHead = document.getElementsByTagName('head')[0];
+var oScript = document.createElement('script');
+oScript.type = 'text/javascript';
+oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
+oHead.appendChild(oScript);
+
 var oHead = document.getElementsByTagName('head')[0],
     oMeta = document.createElement('meta');
 oMeta.name = 'google-translate-customization';
