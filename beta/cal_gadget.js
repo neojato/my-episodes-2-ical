@@ -7,8 +7,8 @@ var prefs = new gadgets.Prefs(),
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
 
 // load the Popup Library
-var oHead = document.getElementsByTagName('head')[0];
-var oScript = document.createElement('script');
+var oHead = window.parent.document.getElementsByTagName('head')[0];
+var oScript = window.parent.document.createElement('script');
 oScript.type = 'text/javascript';
 oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
 oHead.appendChild(oScript);
