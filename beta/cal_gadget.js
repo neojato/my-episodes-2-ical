@@ -102,12 +102,12 @@ function responseSummary(obj) {
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
    sumDiv.id = 'ep-'+id;
-   sumDiv.innerHTML = removeHTMLTags(summary) + '<br/><br/><input type="button" value="OK" onClick="Popup.hide(&#39;ep-'+id+'&#39;);">';
+   sumDiv.innerHTML = removeHTMLTags(summary); // + '<br/><br/><input type="button" value="OK" onClick="Popup.hide(&#39;ep-'+id+'&#39;);">';
    sumFeed.appendChild(sumDiv);
    
    // http://www.omdbapi.com/?t=ancient+aliens&r=json
-   var imgLink = 'http://www.omdbapi.com/?t='+showName[0].replace(/\s/g, '+')+'&r=json';
-   console.log(imgLink);
+   // var imgLink = 'http://www.omdbapi.com/?t='+showName[0].replace(/\s/g, '+')+'&r=json';
+   // console.log(imgLink);
    /*
    if (showName[0])
        getShowImage(imgLink);
