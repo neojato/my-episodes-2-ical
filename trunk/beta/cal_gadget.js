@@ -471,15 +471,11 @@ function getSummary(id) {
   var title = id.split('-'),
       heading = title[0]+' s'+title[1]+'e'+title[2],
       summary = heading+'\n\nSummary:\n';
-  id = id.replace(/\([0-9]{4}\)/, '');
-    console.log(title);
-    console.log(heading);
-    console.log('ep-'+id);
-    if (document.getElementById('ep-'+id)) {
-        summary += document.getElementById('ep-'+id).innerHTML;
-    }
-    console.log(summary);
-    return summary;
+      id = id.replace(/\([0-9]{4}\)/, '');
+  if (document.getElementById('ep-'+id)) {
+      summary += document.getElementById('ep-'+id).innerHTML;
+  }
+  return summary;
 };
 
 function addEvent(showName, showTitle, showTime, summaryId) {
