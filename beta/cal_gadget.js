@@ -7,11 +7,11 @@ var prefs = new gadgets.Prefs(),
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
 
 // load the Popup Library
-var oHead = document.getElementsByTagName('head')[0];
+/* var oHead = document.getElementsByTagName('head')[0];
 var oScript = document.createElement('script');
 oScript.type = 'text/javascript';
 oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
-oHead.appendChild(oScript);
+oHead.appendChild(oScript);*/
 
 var oHead = document.getElementsByTagName('head')[0],
     oMeta = document.createElement('meta');
@@ -228,10 +228,8 @@ function response(obj) {
                     if (showName.length >= 20) {
                         showName = showName.substr(0,17) + '...';
                     }
-                    // Popup.showModal(&#34;"+summaryId+"&#34;,null,null,{&#34;screenColor&#34;:&#34;#99ff99&#34;,&#34;screenOpacity&#34;:.6});return false;
-                    // getSummaryMessage(&#34;"+summaryId+"&#34;);
                     summaryText = hoverText.replace(/\n/g, "<br/>");
-                  html += "<div role='episode-info' id='"+id+"' onclick='Popup.showModal(&#39;"+summaryId+"&#39;,null,null,{&#34;screenColor&#34;:&#34;#99ff99&#34;,&#34;screenOpacity&#34;:.6});return false;' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage(&#34;"+summaryId+"&#34;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
@@ -373,9 +371,10 @@ function getSummaryMessage(summaryId) {
     alert(getSummary(summaryId));
 };
 
-/*function getModalPopUp(divText) {
-    return Popup.show(null,null,null,{'content':'&#34;'+divText+'&#34;', 'width':80,'height':80, 'style':{'border':'1px solid black','backgroundColor':'#BDBDBD'}});
-};*/
+/* function getModalPopUp(divText) {
+    return Popup.showModal("&#39;"+summaryId+"&#39;",null,null,{"&#34;"+screenColor+"&#34;":"&#34;"+#99ff99+"&#34;","&#34;"+screenOpacity+"&#34;":.6});return false;
+    // return Popup.show(null,null,null,{'content':'&#34;'+divText+'&#34;', 'width':80,'height':80, 'style':{'border':'1px solid black','backgroundColor':'#BDBDBD'}});
+}; */
 
 function getActionButton() {
     var html = "<div style='border-top:1px solid #ccc;height:20px;padding:5px;'><div style='display:inline-block;position:relative;float:left;cursor:pointer;vertical-align:bottom;'><a href='http://code.google.com/p/my-episodes-2-ical/?utm_source=gadget&utm_medium=versionLink&utm_campaign=" + version + "' target='_blank'>Version " + version + "</a></div><div style='display:inline-block;position:relative;float:right;cursor:pointer;'>";
