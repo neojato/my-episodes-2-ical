@@ -233,7 +233,7 @@ function response(obj) {
                     //  onclick='Popup.show(&#39;"+summaryId+"&#39;);return false;'
                     //  onclick='Popup.showModal(&#39;"+summaryId+"&#39;,Screen.getBody(),&#39;bottom left&#39;,{&#39;constrainToScreen&#39;:true,&#39;screenOpacity&#39;:.8});return false;'
                     //  onclick='getSummaryMessage(&#34;"+summaryId+"&#34;);'
-                  html += "<div role='episode-info' id='"+id+"' onclick='Popup.showModal(&#39;"+summaryId+"&#39;,Screen.getBody(),&#39;bottom left&#39;,{&#39;constrainToScreen&#39;:true,&#39;screenOpacity&#39;:.8});return false;' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                  html += "<div role='episode-info' id='"+id+"' onclick='Popup.showModal(&#39;"+summaryId+"&#39;,Screen.getBody(),&#39;top left&#39;,{&#39;constrainToScreen&#39;:true,&#39;screenOpacity&#39;:.8});return false;' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
