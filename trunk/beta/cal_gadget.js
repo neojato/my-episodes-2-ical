@@ -7,8 +7,8 @@ var prefs = new gadgets.Prefs(),
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
 
 // load the Popup Library
-/* var oHead = document.getElementsByTagName('head')[0];
-var oScript = document.createElement('script');
+var oHead = parent.document.getElementsByTagName('head')[0];
+var oScript = parent.document.createElement('script');
 oScript.type = 'text/javascript';
 oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
 oHead.appendChild(oScript);*/
@@ -102,7 +102,7 @@ function responseSummary(obj) {
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
    sumDiv.id = 'ep-'+id;
-   sumDiv.innerHTML = removeHTMLTags(summary); // + '<br/><br/><input type="button" value="OK" onClick="Popup.hide(&#39;ep-'+id+'&#39;);">';
+   sumDiv.innerHTML = removeHTMLTags(summary) + '<br/><br/><input type="button" value="OK" onClick="Popup.hide(&#39;ep-'+id+'&#39;);">';
    sumFeed.appendChild(sumDiv);
    
    // http://www.omdbapi.com/?t=ancient+aliens&r=json
@@ -229,7 +229,9 @@ function response(obj) {
                         showName = showName.substr(0,17) + '...';
                     }
                     summaryText = hoverText.replace(/\n/g, "<br/>");
-                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage(&#34;"+summaryId+"&#34;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                    //  onclick='Popup.show(&#39;simplediv&#39;);return false;'
+                    //  onclick='getSummaryMessage(&#34;"+summaryId+"&#34;);'
+                  html += "<div role='episode-info' id='"+id+"' onclick='Popup.show(&#39;"+summaryId+"&#39;);return false;' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
