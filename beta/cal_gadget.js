@@ -11,7 +11,7 @@ var oHead = parent.document.getElementsByTagName('head')[0];
 var oScript = parent.document.createElement('script');
 oScript.type = 'text/javascript';
 oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
-oHead.appendChild(oScript);*/
+oHead.appendChild(oScript);
 
 var oHead = document.getElementsByTagName('head')[0],
     oMeta = document.createElement('meta');
