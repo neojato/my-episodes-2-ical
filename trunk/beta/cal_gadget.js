@@ -6,13 +6,6 @@ var prefs = new gadgets.Prefs(),
 // update gadget message
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
 
-// load the Popup Library
-var oHead = document.getElementsByTagName('head')[0];
-var oScript = document.createElement('script');
-oScript.type = 'text/javascript';
-oScript.src = 'https://my-episodes-2-ical.googlecode.com/svn/trunk/beta/popup.js';
-oHead.appendChild(oScript);
-
 var oHead = document.getElementsByTagName('head')[0],
     oMeta = document.createElement('meta');
 oMeta.name = 'google-translate-customization';
@@ -102,8 +95,7 @@ function responseSummary(obj) {
    var sumFeed = document.getElementById('summary_feed');
    var sumDiv = document.createElement('div');
    sumDiv.id = 'ep-'+id;
-   sumDiv.style = 'border:3px solid black; padding:5px; display:none;"';
-   sumDiv.innerHTML = removeHTMLTags(summary) + '<br/><br/><input type="button" value="OK" onClick="Popup.hide(&#39;ep-'+id+'&#39;);">';
+   sumDiv.innerHTML = removeHTMLTags(summary);
    sumFeed.appendChild(sumDiv);
    
    // http://www.omdbapi.com/?t=ancient+aliens&r=json
@@ -230,10 +222,7 @@ function response(obj) {
                         showName = showName.substr(0,17) + '...';
                     }
                     summaryText = hoverText.replace(/\n/g, "<br/>");
-                    //  onclick='Popup.show(&#39;"+summaryId+"&#39;);return false;'
-                    //  onclick='Popup.showModal(&#39;"+summaryId+"&#39;,Screen.getBody(),&#39;bottom left&#39;,{&#39;constrainToScreen&#39;:true,&#39;screenOpacity&#39;:.8});return false;'
-                    //  onclick='getSummaryMessage(&#34;"+summaryId+"&#34;);'
-                  html += "<div role='episode-info' id='"+id+"' onclick='Popup.showModal(&#39;"+summaryId+"&#39;,Screen.getBody(),&#39;top left&#39;,{&#39;constrainToScreen&#39;:true,&#39;screenOpacity&#39;:.8});return false;' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
+                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage(&#39;"+summaryId+"&#39;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
                     html += "</div>";
                     counter++;
                 }
