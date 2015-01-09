@@ -3,6 +3,10 @@ var prefs = new gadgets.Prefs(),
     msg = new gadgets.MiniMessage(),
     version = '0.8.6b';
 
+// globals
+var dateHeader = "",
+	showHeader = "";
+
 // update gadget message
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
 
@@ -33,6 +37,7 @@ function getFeed() {
     }
 };
 
+/*
 function getShowImage(link) {
    var params = {};
    params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.JSON;
@@ -50,6 +55,7 @@ function responseImage(obj) {
       }
   }
 }
+*/
 
 function getSummaryHTML(link) {
    var params = {};
@@ -110,9 +116,10 @@ function responseSummary(obj) {
 };
  
 function response(obj) {
-    var feed = obj.data; // contains the feed data
-    var contentDiv = document.getElementById('content_div');
-    var html = "";
+    var feed = obj.data, // contains the feed data
+    	contentDiv = document.getElementById('content_div'),
+    	html = '',
+    	feedHtml = '';
     
     // create episode summary container
     var sumFeed = document.createElement('div');
@@ -131,10 +138,8 @@ function response(obj) {
         var counter = 0;
         var dateHeader = '';
         var showHeader = '';
-        html += "<div id='content_feed' style='overflow-x:hidden;overflow-y:auto;width:100%;height:280px;'>";
         for(var i = 0; i < feed.Entry.length; i++) {
             if (feed.Entry[i].Title != 'No Episodes') {
-                var id = '';
                 var today = new Date();
                 var tomorrow = new Date( today.getFullYear(), today.getMonth(), today.getDate()+1 );
                 var modTitle = feed.Entry[i].Title;
@@ -184,144 +189,43 @@ function response(obj) {
                     getSummaryHTML(link); // get episode summary info for later
                     
                     var seasonId = episode.split('x', 1);
-                    if (seasonId[0].substr(0, 1) == '0')
-                        seasonId = seasonId[0].substr(1);
-                    else
-                        seasonId = seasonId[0];
+                    seasonId = seasonId[0].substr(0, 1) == '0' ? seasonId[0].substr(1) : seasonId[0];
                     
                     var episodeId = episode.split('x', 2);
-                    if (episodeId[1].substr(0, 1) == '0')
-                        episodeId = episodeId[1].substr(1);
-                    else
-                        episodeId = episodeId[1];
+                    episodeId = episodeId[1].substr(0, 1) == '0' ? episodeId[1].substr(1) : episodeId = episodeId[1];
                     
                     var divName = showName.split(' (', 2);
                     var summaryId = divName[0]+'-'+seasonId+'-'+episodeId;
                     
-                    
-                    if (dateHeader != currentHeader) {
-                        if(counter != 0) {
-                            html += "</div>";
-                        }
-
-                        currentStyle = '';
-                        todayText = '';
-                        if (showDate.getTime() == today.getTime()) {
-                            currentStyle = 'background-color:#F4F4F4;';
-                            todayText = ' (today)';
-                        }
-
-                        id = "headline" + counter;
-                        html += "<div><div id='"+id+"' style='cursor:default;font-weight:bold;border-bottom:1px solid #D8D8D8;border-top:1px solid #D8D8D8;padding-top:5px;padding-bottom:5px;"+currentStyle+"'>"+currentHeader+todayText+"</div>";
-                        dateHeader = formatMonth(showDate.getMonth())+' '+showDate.getDate();
-                    }
-                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' title='"+hoverText+"'>";
-                    html += "<div role='episode-2-event' onclick='javascript:addEvent(&#39;"+showName+"&#39;, &#39;"+showTitle+"&#39;, &#39;"+airTime+"&#39;, &#39;"+summaryId+"&#39;);' style='border:1px solid #CCC;height:20px;float:left;cursor:pointer;vertical-align:middle;position:relative;display:inline-block;font-size:12px;font-weight:bold;' title='Add to calendar'>&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</div>";
-                    id = "episode" + counter;
-                    if (showName.length >= 20) {
-                        showName = showName.substr(0,17) + '...';
-                    }
-                    summaryText = hoverText.replace(/\n/g, "<br/>");
-                  html += "<div role='episode-info' id='"+id+"' onclick='getSummaryMessage(&#39;"+summaryId+"&#39;);' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+showName+"</div>";
-                    html += "</div>";
+                    feedHtml += buildFutureShows(counter, dateHeader, currentHeader, showDate, today, showName, showTitle, airTime, summaryId);
                     counter++;
                 }
                 // today's shows
-                else if (prefs.getString('feed') == 'today') {
-                    if (dateHeader != currentHeader) {
-                        if (counter != 0) {
-                            html += "</div>";
-                        }
-
-                        id = "headline" + counter;
-                        html += "<div><div id='" + id + "' style='cursor:default;font-weight:bold;border-bottom:1px solid #D8D8D8;border-top:1px solid #D8D8D8;padding-top:5px;padding-bottom:5px;'>" + currentHeader + "</div>";
-                        dateHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
-                    }
-                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' title='" + hoverText + "'>";
-                    html += "<div role='episode-2-event' onclick='Javascript:addEvent(&#39;" + showName + "&#39;, &#39;" + showTitle + "&#39;, &#39;" + airTime + "&#39;);' style='border:1px solid #CCC;height:20px;float:left;cursor:pointer;vertical-align:middle;position:relative;display:inline-block;font-size:12px;font-weight:bold;' title='Add to calendar'>&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</div>";
-                    id = "episode" + counter;
-                    if ( showName.length >= 20 ) {
-                        showName = showName.substr(0,17) + '...';
-                    }
-                    html += "<div role='episode-info' id='" + id + "' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+ showName +"</div>";
-                    html += "</div>";
-                    counter++;
-                }
                 // tomorrow's shows
-                else if (prefs.getString('feed') == 'tomorrow') {
-                    if (dateHeader != currentHeader) {
-                        if (counter != 0) {
-                            html += "</div>";
-                        }
-
-                        id = "headline" + counter;
-                        html += "<div><div id='" + id + "' style='cursor:default;font-weight:bold;border-bottom:1px solid #D8D8D8;border-top:1px solid #D8D8D8;padding-top:5px;padding-bottom:5px;'>" + currentHeader + "</div>";
-                        dateHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
-                    }
-                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' title='" + hoverText + "'>";
-                    html += "<div role='episode-2-event' onclick='Javascript:addEvent(&#39;" + showName + "&#39;, &#39;" + showTitle + "&#39;, &#39;" + airTime + "&#39;);' style='border:1px solid #CCC;height:20px;float:left;cursor:pointer;vertical-align:middle;position:relative;display:inline-block;font-size:12px;font-weight:bold;' title='Add to calendar'>&nbsp;&nbsp;&laquo;&nbsp;&nbsp;</div>";
-                    id = "episode" + counter;
-                    if ( showName.length >= 20 ) {
-                        showName = showName.substr(0,17) + '...';
-                    }
-                    html += "<div role='episode-info' id='" + id + "' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+ showName +"</div>";
-                    html += "</div>";
+                else if (prefs.getString('feed') == 'today' || prefs.getString('feed') == 'tomorrow') {
+                	feedHtml += buildSingleDateShows(counter, dateHeader, currentHeader, showDate, showName, showTitle, airTime);
                     counter++;
                 }
                 // 'to watch' shows
-                else if (prefs.getString('feed') == 'unwatched') {
-                    currentHeader = showName + "<br/>Season: " + episode.substr(0,2);
-                    if (showHeader != currentHeader) {
-                        if (counter != 0) {
-                            html += "</div>";
-                        }
-
-                        id = "headline" + counter;
-                        html += "<div><div id='" + id + "' style='cursor:default;font-weight:bold;border-bottom:1px solid #D8D8D8;border-top:1px solid #D8D8D8;padding-top:5px;padding-bottom:5px;'>" + currentHeader + "</div>";
-                        showHeader = currentHeader;
-                    }
-                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' title='" + hoverText + "'>";
-                    //html += "<div role='episode-2-event' style='border:1px solid #CCC;height:20px;float:left;cursor:pointer;vertical-align:middle;position:relative;display:inline-block;' title='Mark as watched'><div class='w'></div></div>";
-                    html += "<div role='episode-2-event' style='height:20px;width:5px;float:left;vertical-align:middle;position:relative;display:inline-block;'></div>";
-                    id = "episode" + counter;
-                    if (showTitle.length >= 23) {
-                        showTitle = showTitle.substr(0,18) + '...';
-                    }
-                    html += "<div role='episode-info' id='" + id + "' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+ showTitle +"</div>";
-                    html += "</div>";
-                    counter++;
-                }
                 // 'to acquire' shows
-                else if(prefs.getString('feed') == 'unacquired') {
+                else if (prefs.getString('feed') == 'unwatched' || prefs.getString('feed') == 'unacquired') {
                     currentHeader = showName + "<br/>Season: " + episode.substr(0,2);
-                    if (showHeader != currentHeader) {
-                        if (counter != 0) {
-                            html += "</div>";
-                        }
-
-                        id = "headline" + counter;
-                        html += "<div><div id='" + id + "' style='cursor:default;font-weight:bold;border-bottom:1px solid #D8D8D8;border-top:1px solid #D8D8D8;padding-top:5px;padding-bottom:5px;'>" + currentHeader + "</div>";
-                        showHeader = currentHeader;
-                    }
-                    html += "<div role='episode-container' style='width:100%;display:inline-block;position:relative;' class='it' onmouseover='this.className=&#39;ith&#39;' onmouseout='this.className=&#39;it&#39;' title='" + hoverText + "'>";
-                    html += "<div role='episode-2-event' style='height:20px;width:5px;float:left;vertical-align:middle;position:relative;display:inline-block;'></div>";
-                    id = "episode" + counter;
-                    if (showTitle.length >= 23) {
-                        showTitle = showTitle.substr(0,18) + '...';
-                    }
-                    html += "<div role='episode-info' id='" + id + "' style='float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'>&nbsp;&nbsp;"+ showTitle +"</div>";
-                    html += "</div>";
+                    feedHtml += buildListShows(counter, showHeader, currentHeader, showTitle);
                     counter++;
                 }
             }
         }
 
         if (counter == 0) {
-            html += "<div>Your '" + prefs.getString('feed') + "' feed is empty!";
-            html += "<br/><br/>Go to <a href='http://www.myepisodes.com' target='_blank'>MyEpisodes.com</a> to add more TV shows.</div><br/><br/>";
+            feedHtml += "<div>Your '" + prefs.getString('feed') + "' feed is empty!";
+            feedHtml += "<br/><br/>Go to <a href='http://www.myepisodes.com' target='_blank'>MyEpisodes.com</a> to add more TV shows.</div><br/><br/>";
         }
+        feedHtml += "</div>";
         
-        html += "</div></div>";
+        html += buildHtml('div', feedHtml, {
+        	id: 'content_feed',
+        	style: 'overflow-x:hidden; overflow-y:auto; width:100%; height:280px;'
+        });
         
         /* action bar */
         html += getActionButton();
@@ -360,14 +264,135 @@ function response(obj) {
     gadgets.window.adjustHeight();
 };
 
+function buildFutureShows(counter, dateHeader, currentHeader, showDate, today, showName, showTitle, airTime, summaryId) {
+	var html = '',
+		innerHtml = '',
+		currentStyle = '',
+		todayText = '';
+	
+    if (dateHeader != currentHeader) {
+        if (counter != 0) {
+            html += '</div>';
+        }
+        
+        if (showDate.getTime() == today.getTime()) {
+            currentStyle = 'background-color:#F4F4F4;';
+            todayText = ' (today)';
+        }
+        html += '<div>';
+        html += buildHtml("div", currentHeader+todayText, {
+        	id: 'headline'+counter,
+        	style: 'cursor:default;font-weight:bold;border-bottom:1px solid #D8D8D8;border-top:1px solid #D8D8D8;padding-top:5px;padding-bottom:5px;'+currentStyle
+        });
+        dateHeader = formatMonth(showDate.getMonth())+' '+showDate.getDate();
+    }
+    
+    innerHtml += buildHtml('div', '&nbsp;&nbsp;&laquo;&nbsp;&nbsp;', {
+    	role: 'episode-2-event',
+    	onclick: 'javascript:addEvent("'+showName+'", "'+showTitle+'", "'+airTime+'", "'+summaryId+'");',
+    	style: 'border:1px solid #CCC; height:20px; float:left; cursor:pointer; vertical-align:middle; position:relative; display:inline-block; font-size:12px; font-weight:bold;',
+    	title: 'Add to calendar'
+    });
+    
+    showName = showName.length >= 20 ? showName.substr(0,17) + '...' : showName;
+    innerHtml += buildHtml('div', '&nbsp;&nbsp;'+showName, {
+    	role: 'episode-info',
+    	id: 'episode'+counter,
+    	onclick: 'getSummaryMessage("'+summaryId+'");',
+    	style: 'float:left; padding-top:5px; padding-bottom:5px; vertical-align:middle; position:relative; display:inline-block;'
+    });
+    
+    html += buildHtml('div', innerHtml, {
+    	role: 'episode-container',
+    	style: 'width:100%; display:inline-block; position:relative;',
+    	class: 'it',
+    	onmouseover: 'this.className="ith"',
+    	onmouseout: 'this.className="it"',
+    	title: hoverText
+    });
+    return html;
+};
+
+function buildSingleDateShows(counter, dateHeader, currentHeader, showDate, showName, showTitle, airTime) {
+	var html = '',
+		innerHtml = '';
+	
+	if (dateHeader != currentHeader) {
+	    if (counter != 0) {
+	        html += '</div>';
+	    }
+	    html += '<div>';
+		html += buildHtml('div', currentHeader, {
+			id: 'headline' + counter,
+			style: 'cursor:default; font-weight:bold; border-bottom:1px solid #D8D8D8; border-top:1px solid #D8D8D8; padding-top:5px; padding-bottom:5px;'
+		});
+		dateHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
+	}
+	
+	innerHtml = buildHtml('div', '&nbsp;&nbsp;&laquo;&nbsp;&nbsp;', {
+		role: 'episode-2-event',
+		onclick: 'Javascript:addEvent("'+showName+'", "'+showTitle+'", "'+airTime+'");'
+	});
+	
+	showName = showName.length >= 20 ? showName.substr(0,17) + '...' : showName;
+	innerHtml += buildHtml('div', '&nbsp;&nbsp;'+showName, {
+		role: 'episode-info',
+		id: 'episode' + counter,
+		style: 'float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'
+	});
+    
+    html += buildHtml('div', innerHtml, {
+    	role: 'episode-container',
+    	style: 'width:100%; display:inline-block; position:relative;',
+    	class: 'it',
+    	onmouseover: 'this.className="ith"',
+    	onmouseout: 'this.className="it"',
+    	title: hoverText
+    });
+    return html;
+};
+
+function buildListShows(counter, showHeader, currentHeader, showTitle) {
+	var html = '',
+		innerHtml = '';
+	
+	if (showHeader != currentHeader) {
+        if (counter != 0) {
+            html += "</div>";
+        }
+        html += '<div>';
+        html += buildHtml('div', currentHeader, {
+        	id: 'headline'+counter,
+        	style: 'cursor:default; font-weight:bold; border-bottom:1px solid #D8D8D8; border-top:1px solid #D8D8D8; padding-top:5px; padding-bottom:5px;'
+        });
+        showHeader = currentHeader;
+    }
+    
+    innerHtml += buildHtml('div', {
+    	role: 'episode-2-event',
+    	style: 'height:20px; width:5px; float:left; vertical-align:middle; position:relative; display:inline-block;'
+    });
+    
+    showTitle = showTitle.length >= 23 ? showTitle.substr(0,18) + '...' : showTitle;
+    innerHtml += buildHtml('div', '&nbsp;&nbsp;'+showTitle, {
+    	id: 'episode'+counter,
+    	style: 'float:left; padding-top:5px; padding-bottom:5px; vertical-align:middle; position:relative; display:inline-block;'
+    });
+    
+    html += buildHtml('div', innerHtml, {
+    	role: 'episode-container',
+    	style: 'width:100%; display:inline-block; position:relative;',
+    	class: 'it',
+    	onmouseover: 'this.className="ith"',
+    	onmouseout: 'this.className="it"',
+    	title: hoverText
+    });
+	return html;
+};
+
 function getSummaryMessage(summaryId) {
     alert(getSummary(summaryId));
 };
-
-/* function getModalPopUp(divText) {
-    return Popup.showModal("&#39;"+summaryId+"&#39;",null,null,{"&#34;"+screenColor+"&#34;":"&#34;"+#99ff99+"&#34;","&#34;"+screenOpacity+"&#34;":.6});return false;
-    // return Popup.show(null,null,null,{'content':'&#34;'+divText+'&#34;', 'width':80,'height':80, 'style':{'border':'1px solid black','backgroundColor':'#BDBDBD'}});
-}; */
 
 function getActionButton() {
     var html = "<div style='border-top:1px solid #ccc;height:20px;padding:5px;'><div style='display:inline-block;position:relative;float:left;cursor:pointer;vertical-align:bottom;'><a href='http://code.google.com/p/my-episodes-2-ical/?utm_source=gadget&utm_medium=versionLink&utm_campaign=" + version + "' target='_blank'>Version " + version + "</a></div><div style='display:inline-block;position:relative;float:right;cursor:pointer;'>";
@@ -403,8 +428,7 @@ function showOption() {
         e.style.display = 'block';
         d.onmouseout = function(){d.className='oph';a.className='arh';};
         selectOption();
-    }
-    else {
+    } else {
         e.style.display = 'none';
         d.onmouseout = function(){d.className='op';a.className='ar';};
     }
@@ -421,15 +445,23 @@ function selectOption() {
     for(var i=0; i < feedType.length; i++) {
         if (feedType[i] == prefs.getString('feed')) {
             document.getElementById('cg_'+feedType[i]).innerHTML = '&#x2713;&nbsp;';
-        }
-        else {
+        } else {
             document.getElementById('cg_'+feedType[i]).innerHTML = '&nbsp;&nbsp;&nbsp;&nbsp;';
         }
     }
 };
 
 function submitOption(feedType) {
-    var html = "<form name='calendarPrefs'><input name='feed' type='hidden' value='" + feedType + "'/></form>";
+    var html = buildHtml("input", {
+      name: "feed",
+      type: "hidden",
+      value: feedType
+    });
+    
+    html += buildHtml("form", html, {
+    	name: "calendarPrefs"
+    });
+    
     document.getElementById('content_div').innerHTML = html;
     updateFeed();
 };
@@ -442,16 +474,13 @@ function updateFeed() {
         if (elements[i].value != '') {
             if(name == "uid") {
                 prefs.set('uid', elements[i].value);
-            }
-            else if (name == "pwdmd5" && isValidMd5( elements[i].value)) {
+            } else if (name == "pwdmd5" && isValidMd5( elements[i].value)) {
                 prefs.set('pwdmd5', elements[i].value);
-            }
-            else if(name == "feed") {
+            } else if(name == "feed") {
                 prefs.set('feed', elements[i].value);
                 ga('send', 'event', 'Switch Feed Button', 'click', elements[i].value);
             }
-        }
-        else {
+        } else {
             prefs.set(name, '');
         }
     }
@@ -469,6 +498,20 @@ function getSummary(id) {
       summary += document.getElementById('ep-'+id).innerHTML;
   }
   return summary;
+};
+
+function buildHTML(tag, html, attrs) {
+  // you can skip html param
+  if (typeof(html) != 'string') {
+    attrs = html;
+    html = null;
+  }
+  var h = '<' + tag;
+  for (attr in attrs) {
+    if(attrs[attr] === false) continue;
+    h += ' ' + attr + '="' + attrs[attr] + '"';
+  }
+  return h += html ? ">" + html + "</" + tag + ">" : "/>";
 };
 
 function addEvent(showName, showTitle, showTime, summaryId) {
@@ -531,15 +574,12 @@ function formatTime(showTime) {
     if (hour > 12) {
         hour -= 12;
         period = "p.m.";
-    }
-    else if (hour == 12) {
+    } else if (hour == 12) {
         period = "p.m.";
-    }
-    else if (hour == 00) {
+    } else if (hour == 00) {
         hour = 12;
         period = "a.m.";
-    }
-    else {
+    } else {
         period = "a.m.";
     }
 
@@ -548,17 +588,16 @@ function formatTime(showTime) {
 
     if (parseInt(hour.substr(0,1)) != 0) {
         return ((hour<=9) ? "0" + hour : hour) + ":" + minutes + " " + period;
-    }
-    else {
+    } else {
         return hour + ":" + minutes + " " + period;
     }
 };
 
-function removeHTMLTags(desc){
+function removeHTMLTags(desc) {
     var strDescription = desc;
-    strDescription = strDescription.replace(/&(lt|gt);/g, function (strMatch, p1){
+    strDescription = strDescription.replace(/&(lt|gt);/g, function (strMatch, p1) {
         return (p1 == "lt")? "<" : ">";
-		});
+	});
     strDescription = strDescription.replace(/<\/?[^>]+(>|$)/g, " ");
     strDescription = strDescription.replace(/&amp;/g, "&");
     return strDescription;
