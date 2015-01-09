@@ -197,7 +197,7 @@ function response(obj) {
                     var divName = showName.split(' (', 2);
                     var summaryId = divName[0]+'-'+seasonId+'-'+episodeId;
                     
-                    feedHtml += buildFutureShows(counter, dateHeader, currentHeader, showDate, today, showName, showTitle, airTime, summaryId);
+                    feedHtml += buildFutureShows(counter, dateHeader, currentHeader, showDate, today, showName, showTitle, airTime, summaryId, hoverText);
                     counter++;
                 }
                 // today's shows
@@ -264,7 +264,7 @@ function response(obj) {
     gadgets.window.adjustHeight();
 };
 
-function buildFutureShows(counter, dateHeader, currentHeader, showDate, today, showName, showTitle, airTime, summaryId) {
+function buildFutureShows(counter, dateHeader, currentHeader, showDate, today, showName, showTitle, airTime, summaryId, hoverText) {
 	var html = '',
 		innerHtml = '',
 		currentStyle = '',
