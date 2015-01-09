@@ -222,7 +222,7 @@ function response(obj) {
         }
         feedHtml += "</div>";
         
-        html += buildHtml('div', feedHtml, {
+        html += buildHTML('div', feedHtml, {
         	id: 'content_feed',
         	style: 'overflow-x:hidden; overflow-y:auto; width:100%; height:280px;'
         });
@@ -280,14 +280,14 @@ function buildFutureShows(counter, dateHeader, currentHeader, showDate, today, s
             todayText = ' (today)';
         }
         html += '<div>';
-        html += buildHtml("div", currentHeader+todayText, {
+        html += buildHTML("div", currentHeader+todayText, {
         	id: 'headline'+counter,
         	style: 'cursor:default;font-weight:bold;border-bottom:1px solid #D8D8D8;border-top:1px solid #D8D8D8;padding-top:5px;padding-bottom:5px;'+currentStyle
         });
         dateHeader = formatMonth(showDate.getMonth())+' '+showDate.getDate();
     }
     
-    innerHtml += buildHtml('div', '&nbsp;&nbsp;&laquo;&nbsp;&nbsp;', {
+    innerHtml += buildHTML('div', '&nbsp;&nbsp;&laquo;&nbsp;&nbsp;', {
     	role: 'episode-2-event',
     	onclick: 'javascript:addEvent("'+showName+'", "'+showTitle+'", "'+airTime+'", "'+summaryId+'");',
     	style: 'border:1px solid #CCC; height:20px; float:left; cursor:pointer; vertical-align:middle; position:relative; display:inline-block; font-size:12px; font-weight:bold;',
@@ -295,14 +295,14 @@ function buildFutureShows(counter, dateHeader, currentHeader, showDate, today, s
     });
     
     showName = showName.length >= 20 ? showName.substr(0,17) + '...' : showName;
-    innerHtml += buildHtml('div', '&nbsp;&nbsp;'+showName, {
+    innerHtml += buildHTML('div', '&nbsp;&nbsp;'+showName, {
     	role: 'episode-info',
     	id: 'episode'+counter,
     	onclick: 'getSummaryMessage("'+summaryId+'");',
     	style: 'float:left; padding-top:5px; padding-bottom:5px; vertical-align:middle; position:relative; display:inline-block;'
     });
     
-    html += buildHtml('div', innerHtml, {
+    html += buildHTML('div', innerHtml, {
     	role: 'episode-container',
     	style: 'width:100%; display:inline-block; position:relative;',
     	class: 'it',
@@ -322,26 +322,26 @@ function buildSingleDateShows(counter, dateHeader, currentHeader, showDate, show
 	        html += '</div>';
 	    }
 	    html += '<div>';
-		html += buildHtml('div', currentHeader, {
+		html += buildHTML('div', currentHeader, {
 			id: 'headline' + counter,
 			style: 'cursor:default; font-weight:bold; border-bottom:1px solid #D8D8D8; border-top:1px solid #D8D8D8; padding-top:5px; padding-bottom:5px;'
 		});
 		dateHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
 	}
 	
-	innerHtml = buildHtml('div', '&nbsp;&nbsp;&laquo;&nbsp;&nbsp;', {
+	innerHtml = buildHTML('div', '&nbsp;&nbsp;&laquo;&nbsp;&nbsp;', {
 		role: 'episode-2-event',
 		onclick: 'Javascript:addEvent("'+showName+'", "'+showTitle+'", "'+airTime+'");'
 	});
 	
 	showName = showName.length >= 20 ? showName.substr(0,17) + '...' : showName;
-	innerHtml += buildHtml('div', '&nbsp;&nbsp;'+showName, {
+	innerHtml += buildHTML('div', '&nbsp;&nbsp;'+showName, {
 		role: 'episode-info',
 		id: 'episode' + counter,
 		style: 'float:left;padding-top: 5px; padding-bottom: 5px; vertical-align: middle; position: relative; display: inline-block;'
 	});
     
-    html += buildHtml('div', innerHtml, {
+    html += buildHTML('div', innerHtml, {
     	role: 'episode-container',
     	style: 'width:100%; display:inline-block; position:relative;',
     	class: 'it',
@@ -361,25 +361,25 @@ function buildListShows(counter, showHeader, currentHeader, showTitle) {
             html += "</div>";
         }
         html += '<div>';
-        html += buildHtml('div', currentHeader, {
+        html += buildHTML('div', currentHeader, {
         	id: 'headline'+counter,
         	style: 'cursor:default; font-weight:bold; border-bottom:1px solid #D8D8D8; border-top:1px solid #D8D8D8; padding-top:5px; padding-bottom:5px;'
         });
         showHeader = currentHeader;
     }
     
-    innerHtml += buildHtml('div', {
+    innerHtml += buildHTML('div', {
     	role: 'episode-2-event',
     	style: 'height:20px; width:5px; float:left; vertical-align:middle; position:relative; display:inline-block;'
     });
     
     showTitle = showTitle.length >= 23 ? showTitle.substr(0,18) + '...' : showTitle;
-    innerHtml += buildHtml('div', '&nbsp;&nbsp;'+showTitle, {
+    innerHtml += buildHTML('div', '&nbsp;&nbsp;'+showTitle, {
     	id: 'episode'+counter,
     	style: 'float:left; padding-top:5px; padding-bottom:5px; vertical-align:middle; position:relative; display:inline-block;'
     });
     
-    html += buildHtml('div', innerHtml, {
+    html += buildHTML('div', innerHtml, {
     	role: 'episode-container',
     	style: 'width:100%; display:inline-block; position:relative;',
     	class: 'it',
@@ -452,13 +452,13 @@ function selectOption() {
 };
 
 function submitOption(feedType) {
-    var html = buildHtml("input", {
+    var html = buildHTML("input", {
       name: "feed",
       type: "hidden",
       value: feedType
     });
     
-    html += buildHtml("form", html, {
+    html += buildHTML("form", html, {
     	name: "calendarPrefs"
     });
     
