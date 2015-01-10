@@ -310,8 +310,8 @@ buildFutureShows = function (counter, dateHeader, currentHeader, showDate, today
         role: 'episode-container',
         style: 'width:100%; display:inline-block; position:relative;',
         class: 'it',
-        onmouseover: 'this.className="ith"',
-        onmouseout: 'this.className="it"',
+        onmouseover: "this.className='ith'",
+        onmouseout: "this.className='it'",
         title: hoverText
     });
     return html;
@@ -349,8 +349,8 @@ buildSingleDateShows = function (counter, dateHeader, currentHeader, showDate, s
         role: 'episode-container',
         style: 'width:100%; display:inline-block; position:relative;',
         class: 'it',
-        onmouseover: 'this.className="ith"',
-        onmouseout: 'this.className="it"',
+        onmouseover: "this.className='ith'",
+        onmouseout: "this.className='it'",
         title: hoverText
     });
     return html;
@@ -387,8 +387,8 @@ buildListShows = function (counter, showHeader, currentHeader, showTitle, hoverT
         role: 'episode-container',
         style: 'width:100%; display:inline-block; position:relative;',
         class: 'it',
-        onmouseover: 'this.className="ith"',
-        onmouseout: 'this.className="it"',
+        onmouseover: "this.className='ith'",
+        onmouseout: "this.className='it'",
         title: hoverText
     });
     return html;
