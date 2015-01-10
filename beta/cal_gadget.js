@@ -293,7 +293,7 @@ buildFutureShows = function (counter, dateHeader, currentHeader, showDate, today
 
     innerHtml += buildHTML('div', '&nbsp;&nbsp;&laquo;&nbsp;&nbsp;', {
         role: 'episode-2-event',
-        onclick: 'javascript:addEvent("' + showName + '", "' + showTitle + '", "' + airTime + '", "' + summaryId + '");',
+        onclick: "javascript:addEvent('" + showName + "', '" + showTitle + "', '" + airTime + "', '" + summaryId + "');",
         style: 'border:1px solid #CCC; height:20px; float:left; cursor:pointer; vertical-align:middle; position:relative; display:inline-block; font-size:12px; font-weight:bold;',
         title: 'Add to calendar'
     });
@@ -302,7 +302,7 @@ buildFutureShows = function (counter, dateHeader, currentHeader, showDate, today
     innerHtml += buildHTML('div', '&nbsp;&nbsp;' + showName, {
         role: 'episode-info',
         id: 'episode' + counter,
-        onclick: 'getSummaryMessage("' + summaryId + '");',
+        onclick: "getSummaryMessage('" + summaryId + "');",
         style: 'float:left; padding-top:5px; padding-bottom:5px; vertical-align:middle; position:relative; display:inline-block;'
     });
 
@@ -335,7 +335,7 @@ buildSingleDateShows = function (counter, dateHeader, currentHeader, showDate, s
 
     innerHtml = buildHTML('div', '&nbsp;&nbsp;&laquo;&nbsp;&nbsp;', {
         role: 'episode-2-event',
-        onclick: 'Javascript:addEvent("' + showName + '", "' + showTitle + '", "' + airTime + '");'
+        onclick: "Javascript:addEvent('" + showName + "', '" + showTitle + "', '" + airTime + "');"
     });
 
     showName = showName.length >= 20 ? showName.substr(0, 17) + '...' : showName;
