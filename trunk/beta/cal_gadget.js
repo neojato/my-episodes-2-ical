@@ -5,7 +5,8 @@ var prefs = new gadgets.Prefs(),
 
 // globals
 var dateHeader = "",
-    showHeader = "";
+    showHeader = "",
+    currentHeader = "";
 
 // update gadget message
 // alert('Please upgrade to the latest version of the MyEpisodes\xA0gadget!\n\nUse the version link at the bottom of the gadget to visit the project homepage and update to the new gadget by clicking the "Add to Google Calendar" button');
@@ -147,7 +148,6 @@ response = function (obj) {
                     airDate = modTitle.match(/\d{1,2}-\w{3}-\d{4}/g) + '', // finds air date (match ex. 09-Sep-2011)
                     airTime = description.match(/\d{2}:\d{2}/g), // finds air time (match ex. 18:00)
                     showDate = new Date(airDate.substr(7), getMonthInt(airDate.substr(3, 3)), airDate.substr(0, 2)),
-                    currentHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate(),
                     episode = modTitle.match(/\d{2}x\d{2}/g) + '', // finds episode number.
                     showTime = '',
                     showName = '',
@@ -158,6 +158,8 @@ response = function (obj) {
                     episodeId = '',
                     divName = '',
                     summaryId = '';
+                
+                currentHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
 
                 // fix for TVRage.com omitting AirTime
                 if (!airTime) {
