@@ -157,7 +157,8 @@ response = function (obj) {
                     seasonId = '',
                     episodeId = '',
                     divName = '',
-                    summaryId = '';
+                    summaryId = '',
+                    showList = '';
                 
                 currentHeader = formatMonth(showDate.getMonth()) + ' ' + showDate.getDate();
 
@@ -207,18 +208,24 @@ response = function (obj) {
                     divName = showName.split(' (', 2);
                     summaryId = divName[0] + '-' + seasonId + '-' + episodeId;
 
-                    feedHtml += buildFutureShows(counter, dateHeader, currentHeader, showDate, today, showName, showTitle, airTime, summaryId, hoverText);
+                    showList = buildFutureShows(counter, dateHeader, currentHeader, showDate, today, showName, showTitle, airTime, summaryId, hoverText);
+                    feedHtml += showList.html;
+                    dateHeader = showList.dateHeader;
                     counter++;
                 } else if (prefs.getString('feed') === 'today' || prefs.getString('feed') === 'tomorrow') {
                     // today's shows
                     // tomorrow's shows
-                    feedHtml += buildSingleDateShows(counter, dateHeader, currentHeader, showDate, showName, showTitle, airTime, hoverText);
+                    showList = buildSingleDateShows(counter, dateHeader, currentHeader, showDate, showName, showTitle, airTime, hoverText);
+                    feedHtml += showList.html;
+                    dateHeader = showList.dateHeader;
                     counter++;
                 } else if (prefs.getString('feed') === 'unwatched' || prefs.getString('feed') === 'unacquired') {
                     // 'to watch' shows
                     // 'to acquire' shows
                     currentHeader = showName + "<br/>Season: " + episode.substr(0, 2);
-                    feedHtml += buildListShows(counter, showHeader, currentHeader, showTitle, hoverText);
+                    showList = buildListShows(counter, showHeader, currentHeader, showTitle, hoverText)
+                    feedHtml += showList.html;
+                    showHeader = showList.showHeader;
                     counter++;
                 }
             }
@@ -316,7 +323,10 @@ buildFutureShows = function (counter, dateHeader, currentHeader, showDate, today
         onmouseout: "this.className='it'",
         title: hoverText
     });
-    return html;
+    return {
+        html: html,
+        dateHeader: dateHeader
+    };
 };
 
 buildSingleDateShows = function (counter, dateHeader, currentHeader, showDate, showName, showTitle, airTime, hoverText) {
@@ -355,7 +365,10 @@ buildSingleDateShows = function (counter, dateHeader, currentHeader, showDate, s
         onmouseout: "this.className='it'",
         title: hoverText
     });
-    return html;
+    return {
+        html: html,
+        dateHeader: dateHeader
+    };
 };
 
 buildListShows = function (counter, showHeader, currentHeader, showTitle, hoverText) {
@@ -393,7 +406,10 @@ buildListShows = function (counter, showHeader, currentHeader, showTitle, hoverT
         onmouseout: "this.className='it'",
         title: hoverText
     });
-    return html;
+    return {
+        html: html,
+        showHeader: showHeader
+    };
 };
 
 getSummaryMessage = function (summaryId) {
