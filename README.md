@@ -8,7 +8,7 @@ This project is the development of a compilation of scripts that take the RSS fe
 ## Feature requests welcome!
 View the [Wiki](https://github.com/neojato/my-episodes-2-ical/wiki) for additional information about the gadget and this project.
 
-![](https://github.com/neojato/my-episodes-2-ical/blob/master/images/v0.8.4/screenshot1.1.png)
-![](https://github.com/neojato/my-episodes-2-ical/blob/master/images/v0.8.4/screenshot2.1.png)
-![](https://github.com/neojato/my-episodes-2-ical/blob/master/images/v0.8.4/screenshot3.1.png)
-![](https://github.com/neojato/my-episodes-2-ical/blob/master/images/v0.8.4/screenshot4.1.png)
+<img width="160px" src="https://github.com/neojato/my-episodes-2-ical/blob/master/images/v0.8.4/screenshot1.1.png"/>
+<img width="160px" src="https://github.com/neojato/my-episodes-2-ical/blob/master/images/v0.8.4/screenshot2.1.png"/>
+<img width="160px" src="https://github.com/neojato/my-episodes-2-ical/blob/master/images/v0.8.4/screenshot3.1.png"/>
+<img width="160px" src="https://github.com/neojato/my-episodes-2-ical/blob/master/images/v0.8.4/screenshot4.1.png"/>
