@@ -1,4 +1,4 @@
-# MyEpisodes 2 Google Calendar Gadget
+# MyEpisodes - Google Calendar Gadget
 This project is the development of a compilation of scripts that take the RSS feeds from MyEpisodes.com and scrub them to be used in Google Calendar via a [sidebar gadget](https://developers.google.com/google-apps/calendar/gadgets/sidebar/). Ultimately the goal is to add the ability for the sidebar gadget to create the full iCal feed to pass into Google Calendar much like the [advanced hosted script](https://github.com/neojato/my-episodes-2-ical/wiki/5.-Personal-Server-Script). The information provided in the RSS feed is powered by http://www.myepisodes.com/.
 
 **Add the gadget:** <a href="https://www.google.com/calendar/render?gadgeturl=https://github.com/neojato/my-episodes-2-ical/blob/master/myepisodes2ical.xml"><img src="https://github.com/neojato/my-episodes-2-ical/blob/master/images/addToGC.gif"/></a>
